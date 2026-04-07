@@ -1,0 +1,85 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  image?: string;
+  schema?: Record<string, any>;
+  pageType?: string;
+}
+
+const { 
+  title, 
+  description, 
+  canonical = new URL(Astro.url.pathname, Astro.site).href,
+  image = '/images/default-og.webp',
+  schema,
+  pageType
+} = Astro.props;
+
+const businessName = "NY Nails";
+const businessAddress = "123 Fifth Avenue, New York, NY 10001";
+const businessPhone = "+12125551234";
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "BeautySalon",
+  "name": businessName,
+  "telephone": businessPhone,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "123 Fifth Avenue",
+    "addressLocality": "New York",
+    "addressRegion": "NY",
+    "postalCode": "10001",
+    "addressCountry": "US"
+  },
+  "priceRange": "$$",
+  "openingHours": ["Mo-Fr 09:00-21:00", "Sa 10:00-20:00", "Su 10:00-18:00"]
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | {businessName}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Sonsie+One&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet" />
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={pageType === 'area' ? 'website' : 'website'} />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+    {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

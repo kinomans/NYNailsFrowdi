@@ -1,0 +1,547 @@
+---
+// Преимущества салона с иконками Font Awesome
+const benefits = [
+  {
+    id: 1,
+    title: "Premium European Materials",
+    description: "We use only top-tier brands: OPI, CND Shellac, Gelish, and Japanese gels. No compromises on quality.",
+    icon: "fa-gem",
+    iconStyle: "fas",
+    stat: "15+",
+    statLabel: "premium brands",
+    tags: ["OPI", "CND", "Gelish"],
+    bgShape: "circle"
+  },
+  {
+    id: 2,
+    title: "Medical-Grade Sterilization",
+    description: "Autoclave sterilization for all metal tools. Single-use files and buffers for each client.",
+    icon: "fa-shield-heart",
+    iconStyle: "fas",
+    stat: "100%",
+    statLabel: "sterile safety",
+    tags: ["Autoclave", "Single-use", "Certified"],
+    bgShape: "circle"
+  },
+  {
+    id: 3,
+    title: "Award-Winning Artists",
+    description: "Our masters have 5+ years experience and regular training in NY and international competitions.",
+    icon: "fa-trophy",
+    iconStyle: "fas",
+    stat: "5+",
+    statLabel: "years experience",
+    tags: ["Certified", "Trained", "Awarded"],
+    bgShape: "circle"
+  },
+  {
+    id: 4,
+    title: "All NYC Boroughs",
+    description: "Convenient locations in Manhattan, Brooklyn, Queens, Bronx & Staten Island. Open 7 days a week.",
+    icon: "fa-location-dot",
+    iconStyle: "fas",
+    stat: "5",
+    statLabel: "boroughs",
+    tags: ["Manhattan", "Brooklyn", "Queens"],
+    bgShape: "circle"
+  },
+  {
+    id: 5,
+    title: "Free Nail Art Design",
+    description: "First-time clients get a complimentary nail art design of their choice. Up to $45 value.",
+    icon: "fa-palette",
+    iconStyle: "fas",
+    stat: "$45",
+    statLabel: "free value",
+    tags: ["Welcome gift", "New clients"],
+    bgShape: "circle"
+  },
+  {
+    id: 6,
+    title: "Flexible Hours",
+    description: "Open Monday-Saturday 9am-9pm, Sunday 10am-6pm. Late appointments available upon request.",
+    icon: "fa-clock",
+    iconStyle: "fas",
+    stat: "12+",
+    statLabel: "hours daily",
+    tags: ["Late hours", "Weekends"],
+    bgShape: "circle"
+  }
+];
+---
+
+<section class="why-choose-us">
+  <div class="why-container">
+    <!-- Заголовок секции -->
+    <div class="why-header">
+      <h2 class="why-title">
+        <span class="title-small">WHY NY NAILS</span>
+        <span class="title-large">CHOOSE US<span class="dot">.</span></span>
+      </h2>
+      <p class="why-subtitle">
+        Setting the standard for nail care excellence across New York.<br>
+        Here's why thousands of clients trust us with their hands.
+      </p>
+    </div>
+    
+    <!-- Сетка преимуществ -->
+    <div class="benefits-grid">
+      {benefits.map((benefit, index) => (
+        <div 
+          class="benefit-card" 
+          data-aos="fade-up"
+          data-aos-delay={index * 100}
+          style={`--card-index: ${index}`}
+        >
+          <!-- Креативный фон иконки -->
+          <div class="benefit-icon-wrapper">
+            <div class={`icon-bg icon-bg-${benefit.bgShape}`}>
+              <i class={`${benefit.iconStyle} ${benefit.icon} benefit-icon`}></i>
+            </div>
+            <div class="benefit-stat">
+              <span class="stat-number">{benefit.stat}</span>
+              <span class="stat-label">{benefit.statLabel}</span>
+            </div>
+          </div>
+          
+          <div class="benefit-content">
+            <h3 class="benefit-title">{benefit.title}</h3>
+            <p class="benefit-description">{benefit.description}</p>
+            <div class="benefit-tags">
+              {benefit.tags.map(tag => (
+                <span class="benefit-tag">{tag}</span>
+              ))}
+            </div>
+          </div>
+          
+          <!-- Интерактивный элемент при наведении -->
+          <div class="benefit-hover-glow"></div>
+        </div>
+      ))}
+    </div>
+    
+    <!-- Дополнительный CTA -->
+    <div class="why-footer">
+      <div class="experience-badge">
+        <span class="years">2026</span>
+        <span class="text">Trendsetting<br>Since 2018</span>
+      </div>
+      <a href="/booking" class="book-cta">
+        Experience the difference
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .why-choose-us {
+    position: relative;
+    width: 100%;
+    padding: 120px 0;
+    background: #ffffff;
+    overflow: hidden;
+  }
+  
+  /* Декоративный фон */
+  .why-choose-us::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 100% 0%, rgba(255, 0, 0, 0.03) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  
+  .why-choose-us::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255, 0, 0, 0.02) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  
+  .why-container {
+    max-width: 1520px;
+    margin: 0 auto;
+    padding: 0 26px;
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Заголовок */
+  .why-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+  
+  .why-title {
+    margin: 0 0 20px 0;
+    font-family: 'Caveat Brush', cursive;
+  }
+  
+  .why-title .title-small {
+    display: block;
+    font-size: 24px;
+    letter-spacing: 6px;
+    color: #FF0000;
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+  
+  .why-title .title-large {
+    display: block;
+    font-size: 80px;
+    color: #1E1E1E;
+    line-height: 1;
+  }
+  
+  .why-title .dot {
+    color: #FF0000;
+  }
+  
+  .why-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* Сетка преимуществ */
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 60px;
+  }
+  
+  /* Карточка преимущества */
+  .benefit-card {
+    position: relative;
+    background: white;
+    border-radius: 32px;
+    padding: 32px;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .benefit-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 0, 0, 0.2);
+    box-shadow: 0 30px 40px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Креативные фоны для иконок */
+  .benefit-icon-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+  }
+  
+  /* Общий стиль для фона иконки */
+  .icon-bg {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  /* Форма круга */
+  .icon-bg-circle {
+    background: linear-gradient(135deg, #FF0000 0%, #cc0000 100%);
+    border-radius: 50%;
+    box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2);
+  }
+  
+  /* Форма шестиугольника (через clip-path) */
+  .icon-bg-hexagon {
+    background: linear-gradient(135deg, #FF0000 0%, #cc0000 100%);
+    clip-path: polygon(25% 0%, 75% 0%, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0% 75%, 0% 25%);
+    box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2);
+  }
+  
+  /* Форма звезды */
+  .icon-bg-star {
+    background: linear-gradient(135deg, #FF0000 0%, #cc0000 100%);
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2);
+  }
+  
+  /* Анимация при наведении на карточку */
+  .benefit-card:hover .icon-bg-circle,
+  .benefit-card:hover .icon-bg-hexagon,
+  .benefit-card:hover .icon-bg-star {
+    transform: scale(1.05) rotate(5deg);
+    box-shadow: 0 15px 30px rgba(255, 0, 0, 0.3);
+  }
+  
+  .benefit-icon {
+    font-size: 32px;
+    color: white;
+    transition: transform 0.3s ease;
+  }
+  
+  .benefit-card:hover .benefit-icon {
+    transform: scale(1.1);
+  }
+  
+  /* Статистика */
+  .benefit-stat {
+    text-align: right;
+  }
+  
+  .stat-number {
+    display: block;
+    font-family: 'Sonsie One', cursive;
+    font-size: 32px;
+    color: #FF0000;
+    line-height: 1;
+  }
+  
+  .stat-label {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #999;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Контент */
+  .benefit-content {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .benefit-title {
+    font-family: 'Sonsie One', cursive;
+    font-size: 20px;
+    color: #1E1E1E;
+    margin: 0 0 12px 0;
+    line-height: 1.3;
+  }
+  
+  .benefit-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #666;
+    margin: 0 0 16px 0;
+  }
+  
+  .benefit-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .benefit-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    padding: 4px 10px;
+    background: #f5f5f5;
+    color: #1E1E1E;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+    transition: all 0.2s ease;
+  }
+  
+  .benefit-card:hover .benefit-tag {
+    background: #FF0000;
+    color: white;
+  }
+  
+  /* Интерактивный glow эффект */
+  .benefit-hover-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 20%, rgba(255, 0, 0, 0.05) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+  
+  .benefit-card:hover .benefit-hover-glow {
+    opacity: 1;
+  }
+  
+  /* Footer */
+  .why-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 40px;
+    border-top: 1px solid #e0e0e0;
+  }
+  
+  .experience-badge {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .experience-badge .years {
+    font-family: 'Sonsie One', cursive;
+    font-size: 48px;
+    color: #FF0000;
+    line-height: 1;
+  }
+  
+  .experience-badge .text {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.3;
+  }
+  
+  .book-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #FF0000;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-bottom: 2px solid #FF0000;
+    transition: all 0.3s ease;
+  }
+  
+  .book-cta:hover {
+    gap: 16px;
+    opacity: 0.7;
+  }
+  
+  /* Анимация появления */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .benefit-card {
+    animation: fadeUp 0.6s ease forwards;
+    animation-delay: calc(var(--card-index) * 0.08s);
+    opacity: 0;
+  }
+  
+  /* ========== МЕДИА-ЗАПРОСЫ ========== */
+  
+  @media (max-width: 1400px) {
+    .why-choose-us {
+      padding: 100px 0;
+    }
+    
+    .why-title .title-large {
+      font-size: 64px;
+    }
+  }
+  
+  @media (max-width: 1024px) {
+    .why-choose-us {
+      padding: 80px 0;
+    }
+    
+    .benefits-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    
+    .why-title .title-large {
+      font-size: 56px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .why-choose-us {
+      padding: 60px 0;
+    }
+    
+    .why-container {
+      padding: 0 20px;
+    }
+    
+    .benefits-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    
+    .why-title .title-small {
+      font-size: 18px;
+      letter-spacing: 4px;
+    }
+    
+    .why-title .title-large {
+      font-size: 48px;
+    }
+    
+    .why-subtitle {
+      font-size: 16px;
+      padding: 0 16px;
+    }
+    
+    .why-footer {
+      flex-direction: column;
+      gap: 24px;
+      text-align: center;
+    }
+    
+    .benefit-card {
+      padding: 24px;
+    }
+    
+    .icon-bg {
+      width: 60px;
+      height: 60px;
+    }
+    
+    .benefit-icon {
+      font-size: 28px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .why-choose-us {
+      padding: 40px 0;
+    }
+    
+    .why-title .title-large {
+      font-size: 36px;
+    }
+    
+    .why-header {
+      margin-bottom: 40px;
+    }
+    
+    .stat-number {
+      font-size: 28px;
+    }
+    
+    .benefit-title {
+      font-size: 18px;
+    }
+  }
+</style>

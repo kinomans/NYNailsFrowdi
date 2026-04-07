@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import AreasWeServe from '../components/AreasWeServe.astro';
+import OurServices from '../components/OurServices.astro';
+import Portfolio from '../components/Portfolio.astro';
+import WhyChooseUs from '../components/WhyChooseUs.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Contact from '../components/Contact.astro';
+import FAQ from '../components/FAQ.astro';
+
+const pageTitle = "Premier NY Salon | Hair, Nails & Skincare in Manhattan, Brooklyn, Queens";
+const pageDescription = "Experience luxury at our NY salon. Expert stylists across Manhattan, Brooklyn, Queens, Bronx & Staten Island. Book your dream transformation today.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <Hero />
+  <AreasWeServe />
+  <OurServices />
+  <Portfolio />
+  <WhyChooseUs />
+  <Testimonials />
+  <Contact />
+  <FAQ />
+</BaseLayout>

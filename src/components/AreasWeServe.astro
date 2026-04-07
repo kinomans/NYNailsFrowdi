@@ -1,0 +1,489 @@
+---
+// Данные о районах Нью-Йорка
+const areas = [
+  {
+    name: 'MANHATTAN',
+    slug: 'manhattan',
+    description: "From SoHo to Harlem, experience luxury beauty in the heart of NYC. Our flagship location serves all Manhattan neighborhoods with premium nail services.",
+    image: '/images/manhattan.png',
+    services: ['Gel Polish', 'Nail Art', 'Extensions'],
+    color: '#D4AF37'
+  },
+  {
+    name: 'BROOKLYN',
+    slug: 'brooklyn',
+    description: "Williamsburg, DUMBO, and beyond. Brooklyn's creative spirit meets our expert nail artistry. Your dream transformation awaits in BK.",
+    image: '/images/brooklyn.png',
+    services: ['Nail Art', 'Dip Powder', 'Pedicure'],
+    color: '#C0A080'
+  },
+  {
+    name: 'QUEENS',
+    slug: 'queens',
+    description: "Astoria, Long Island City, Flushing. The world's most diverse borough deserves equally diverse beauty services. We speak your beauty language.",
+    image: '/images/queens.png',
+    services: ['Classic', 'Gel Polish', 'Nail Art'],
+    color: '#B8966B'
+  },
+  {
+    name: 'BRONX',
+    slug: 'bronx',
+    description: "Riverdale, Fordham, Pelham Bay. Bringing uptown elegance and expert care to the Bronx. Your style, amplified.",
+    image: '/images/bronx.png',
+    services: ['Extensions', 'Pedicure', 'Classic'],
+    color: '#A88452'
+  },
+  {
+    name: 'STATEN ISLAND',
+    slug: 'staten-island',
+    description: "St. George, New Dorp, Tottenville. Cross-borough luxury beauty services without the Manhattan commute.",
+    image: '/images/staten-island.png',
+    services: ['Dip Powder', 'Nail Art', 'Gel Polish'],
+    color: '#8B6B3D'
+  }
+];
+---
+
+<section class="areas-section">
+  <div class="areas-container">
+    <!-- Заголовок секции -->
+    <div class="areas-header">
+      <h2 class="areas-title">
+        <span class="title-small">WHERE WE</span>
+        <span class="title-large">SERVE<span class="dot">.</span></span>
+      </h2>
+      <p class="areas-subtitle">
+        Premium nail services across New York's finest neighborhoods.<br>
+        Your dream transformation is closer than you think.
+      </p>
+    </div>
+    
+    <div class="areas-grid">
+      {areas.map((area, index) => (
+        <div 
+          class="area-card" 
+          style={`--area-color: ${area.color}; --card-index: ${index}`}
+        >
+          <a href={`/areas/${area.slug}`} class="area-link">
+            <div class="area-image-wrapper">
+              <img 
+                src={area.image} 
+                alt={`${area.name} nail salon services`}
+                class="area-image"
+                loading="lazy"
+              />
+              <div class="area-overlay"></div>
+            </div>
+            
+            <div class="area-content">
+              <div class="area-name-wrapper">
+                <h3 class="area-name">{area.name}</h3>
+                <div class="area-arrow">→</div>
+              </div>
+              
+              <p class="area-description">{area.description}</p>
+              
+              <div class="area-services">
+                {area.services.map(service => (
+                  <span class="service-tag">{service}</span>
+                ))}
+              </div>
+              
+              <div class="area-footer">
+                <span class="area-cta">Explore {area.name} →</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      ))}
+    </div>
+    
+    <div class="areas-footer">
+      <a href="/areas" class="view-all-link">
+        View all locations in New York
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .areas-section {
+    position: relative;
+    width: 100%;
+    padding: 120px 0;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+    overflow: hidden;
+  }
+  
+  /* Декоративные элементы как в contact секции */
+  .areas-section::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 0, 0, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  
+  .areas-section::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -5%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255, 0, 0, 0.03) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  
+  .areas-container {
+    max-width: 1520px;
+    margin: 0 auto;
+    padding: 0 26px;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .areas-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+  
+  .areas-title {
+    margin: 0 0 20px 0;
+    font-family: 'Caveat Brush', cursive;
+  }
+  
+  .title-small {
+    display: block;
+    font-size: 24px;
+    letter-spacing: 6px;
+    color: #FF0000;
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+  
+  .title-large {
+    display: block;
+    font-size: 80px;
+    color: #ffffff;
+    line-height: 1;
+  }
+  
+  .title-large .dot {
+    color: #FF0000;
+  }
+  
+  .areas-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    color: rgba(255,255,255,0.8);
+    font-weight: 400;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .areas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 60px;
+  }
+  
+  .area-card {
+    position: relative;
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  .area-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Необычное расположение карточек */
+  .area-card:nth-child(1) {
+    transform: translateY(-20px);
+  }
+  
+  .area-card:nth-child(2) {
+    transform: translateY(10px);
+  }
+  
+  .area-card:nth-child(3) {
+    transform: translateY(-10px);
+  }
+  
+  .area-card:nth-child(4) {
+    transform: translateY(15px);
+  }
+  
+  .area-card:nth-child(5) {
+    transform: translateY(-15px);
+    grid-column: span 1;
+  }
+  
+  @media (min-width: 1401px) {
+    .areas-grid {
+      grid-template-columns: repeat(5, 1fr);
+    }
+    
+    .area-card:nth-child(5) {
+      grid-column: auto;
+    }
+  }
+  
+  .area-link {
+    text-decoration: none;
+    display: block;
+  }
+  
+  .area-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+  }
+  
+  .area-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  
+  .area-card:hover .area-image {
+    transform: scale(1.08);
+  }
+  
+  .area-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.3) 100%);
+  }
+  
+  .area-content {
+    padding: 24px;
+    background: white;
+  }
+  
+  .area-name-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 12px;
+    border-bottom: 2px solid #f0ede8;
+    padding-bottom: 12px;
+  }
+  
+  .area-name {
+    font-family: 'Sonsie One', cursive;
+    font-size: 20px;
+    color: #1E1E1E;
+    margin: 0;
+    letter-spacing: 1px;
+  }
+  
+  .area-arrow {
+    font-size: 20px;
+    color: var(--area-color, #D4AF37);
+    transition: transform 0.3s ease;
+  }
+  
+  .area-card:hover .area-arrow {
+    transform: translateX(5px);
+  }
+  
+  .area-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #6b6b6b;
+    margin: 0 0 16px 0;
+  }
+  
+  .area-services {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .service-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    padding: 4px 10px;
+    background: #f5f5f5;
+    color: #1E1E1E;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+    transition: all 0.2s ease;
+  }
+  
+  .area-card:hover .service-tag {
+    background: #FF0000;
+    color: white;
+  }
+  
+  .area-footer {
+    border-top: 1px solid #f0ede8;
+    padding-top: 16px;
+  }
+  
+  .area-cta {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--area-color, #D4AF37);
+    transition: opacity 0.2s;
+  }
+  
+  .area-card:hover .area-cta {
+    opacity: 0.7;
+  }
+  
+  .areas-footer {
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+  .view-all-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-bottom: 2px solid #FF0000;
+    transition: all 0.3s ease;
+  }
+  
+  .view-all-link:hover {
+    gap: 16px;
+    color: #FF0000;
+  }
+  
+  /* ========== МЕДИА-ЗАПРОСЫ ========== */
+  @media (max-width: 1400px) {
+    .areas-section {
+      padding: 100px 0;
+    }
+    
+    .areas-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    
+    .title-large {
+      font-size: 64px;
+    }
+    
+    .area-card:nth-child(1),
+    .area-card:nth-child(2),
+    .area-card:nth-child(3),
+    .area-card:nth-child(4),
+    .area-card:nth-child(5) {
+      transform: translateY(0);
+    }
+  }
+  
+  @media (max-width: 1024px) {
+    .areas-section {
+      padding: 80px 0;
+    }
+    
+    .title-large {
+      font-size: 56px;
+    }
+    
+    .area-description {
+      font-size: 12px;
+    }
+    
+    .service-tag {
+      font-size: 9px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .areas-section {
+      padding: 60px 0;
+    }
+    
+    .areas-container {
+      padding: 0 20px;
+    }
+    
+    .areas-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    
+    .title-small {
+      font-size: 18px;
+      letter-spacing: 4px;
+    }
+    
+    .title-large {
+      font-size: 48px;
+    }
+    
+    .areas-subtitle {
+      font-size: 16px;
+      padding: 0 16px;
+      color: #666;
+    }
+    
+    .area-image-wrapper {
+      height: 200px;
+    }
+    
+    .area-name {
+      font-size: 18px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .areas-section {
+      padding: 40px 0;
+    }
+    
+    .title-large {
+      font-size: 36px;
+    }
+    
+    .areas-header {
+      margin-bottom: 40px;
+    }
+    
+    .area-content {
+      padding: 18px;
+    }
+    
+    .area-description {
+      font-size: 11px;
+    }
+    
+    .service-tag {
+      font-size: 8px;
+      padding: 3px 8px;
+    }
+  }
+</style>

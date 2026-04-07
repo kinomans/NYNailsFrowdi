@@ -1,0 +1,655 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Nail Salon Locations NYC | Manhattan, Brooklyn, Queens & More | NY Nails";
+const pageDescription = "Find your nearest NY Nails location across New York City. Professional nail services in Manhattan, Brooklyn, Queens, Bronx & Staten Island. Book your appointment today!";
+
+// Все районы
+const areas = [
+  {
+    id: 1,
+    name: "Manhattan",
+    slug: "manhattan",
+    description: "Experience luxury nail care in the heart of NYC. Our flagship location serves all Manhattan neighborhoods with premium hair and skincare services.",
+    image: "/images/manhattan-hero.png",
+    icon: "fa-building",
+    stats: { clients: "5000+", rating: "4.9" },
+    services: ["Gel Polish", "Nail Art", "Extensions"],
+    featured: true,
+    color: "#D4AF37"
+  },
+  {
+    id: 2,
+    name: "Brooklyn",
+    slug: "brooklyn",
+    description: "Brooklyn's creative spirit meets expert nail artistry. From Williamsburg to DUMBO — your perfect nails await.",
+    image: "/images/brooklyn-hero.png",
+    icon: "fa-bridge",
+    stats: { clients: "3500+", rating: "4.8" },
+    services: ["Nail Art", "Dip Powder", "Pedicure"],
+    featured: true,
+    color: "#C0A080"
+  },
+  {
+    id: 3,
+    name: "Queens",
+    slug: "queens",
+    description: "The world's most diverse borough deserves diverse beauty services. We speak your beauty language.",
+    image: "/images/queens-hero.png",
+    icon: "fa-globe",
+    stats: { clients: "2800+", rating: "4.8" },
+    services: ["Classic Manicure", "Gel Polish", "Nail Art"],
+    featured: true,
+    color: "#B8966B"
+  },
+  {
+    id: 4,
+    name: "Bronx",
+    slug: "bronx",
+    description: "Bringing uptown elegance and expert care to the Bronx. Your style, amplified.",
+    image: "/images/bronx-hero.png",
+    icon: "fa-tree",
+    stats: { clients: "1800+", rating: "4.7" },
+    services: ["Nail Extensions", "Pedicure", "Classic"],
+    featured: true,
+    color: "#A88452"
+  },
+  {
+    id: 5,
+    name: "Staten Island",
+    slug: "staten-island",
+    description: "Cross-borough luxury beauty services without the Manhattan commute.",
+    image: "/images/staten-island-hero.png",
+    icon: "fa-ferry",
+    stats: { clients: "1200+", rating: "4.9" },
+    services: ["Dip Powder", "Nail Art", "Gel Polish"],
+    featured: true,
+    color: "#8B6B3D"
+  }
+];
+
+const whyChooseAreas = [
+  { icon: "fa-location-dot", title: "5 Convenient Locations", text: "Across all NYC boroughs" },
+  { icon: "fa-clock", title: "Flexible Hours", text: "Open 7 days a week" },
+  { icon: "fa-star", title: "Same Quality", text: "Premium service everywhere" },
+  { icon: "fa-users", title: "Expert Team", text: "50+ certified technicians" }
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} pageType="areas">
+    <!-- Hero секция -->
+    <section class="areas-hero">
+      <div class="hero-content">
+        <div class="hero-badge">📍 FIND US</div>
+        <h1 class="hero-title">OUR<span class="highlight"> LOCATIONS</span></h1>
+        <p class="hero-subtitle">Premium nail services across all five boroughs of New York City —<br>your perfect salon is never far away</p>
+      </div>
+    </section>
+
+    <!-- Почему выбирают наши локации -->
+    <section class="areas-benefits">
+      <div class="benefits-container">
+        {whyChooseAreas.map(benefit => (
+          <div class="benefit-card">
+            <i class={`fas ${benefit.icon}`}></i>
+            <h3>{benefit.title}</h3>
+            <p>{benefit.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Все районы - креативная сетка -->
+    <section class="all-areas">
+      <div class="areas-header">
+        <span class="section-badge">OUR LOCATIONS</span>
+        <h2>Nail Salons Across<span class="highlight"> New York City</span></h2>
+        <p>From Manhattan to Staten Island — we're everywhere you need us</p>
+      </div>
+      
+      <div class="areas-grid">
+        {areas.map((area, index) => (
+          <div class="area-card" style={`--card-index: ${index}; --area-color: ${area.color}`}>
+            <div class="area-image">
+              <img src={area.image} alt={`Nail salon in ${area.name}`} loading="lazy" />
+              <div class="area-icon">
+                <i class={`fas ${area.icon}`}></i>
+              </div>
+            </div>
+            <div class="area-content">
+              <div class="area-header">
+                <h3 class="area-name">{area.name}</h3>
+                <div class="area-stats">
+                  <span class="stat">
+                    <i class="fas fa-user"></i> {area.stats.clients}
+                  </span>
+                  <span class="stat">
+                    <i class="fas fa-star"></i> {area.stats.rating}
+                  </span>
+                </div>
+              </div>
+              <p class="area-description">{area.description}</p>
+              <div class="area-services">
+                {area.services.map(service => (
+                  <span class="service-tag">{service}</span>
+                ))}
+              </div>
+              <div class="area-footer">
+                <a href={`/areas/${area.slug}`} class="area-link">
+                  Explore {area.name} <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Карта всех локаций -->
+    <section class="areas-map">
+      <div class="map-header">
+        <span class="section-badge">FIND YOUR NEAREST</span>
+        <h2>Locations<span class="highlight"> Map</span></h2>
+        <p>All five boroughs, one premium experience</p>
+      </div>
+      <div class="map-container">
+        <div class="map-placeholder">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.1583091352!2d-74.11976367358668!3d40.69766374852094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1641234567890!5m2!1sen!2sus"
+            width="100%" 
+            height="450" 
+            style="border:0; border-radius: 32px;" 
+            allowfullscreen="" 
+            loading="lazy"
+            title="NY Nails Locations Map"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA секция -->
+    <section class="areas-cta">
+      <div class="cta-content">
+        <div class="cta-icon">💅</div>
+        <h2>Find Your Nearest NY Nails</h2>
+        <p>Book your appointment at the location most convenient for you</p>
+        <div class="cta-buttons">
+          <a href="/booking" class="btn-primary">Book Now →</a>
+          <a href="/services" class="btn-secondary">Explore Services</a>
+        </div>
+      </div>
+    </section>
+</BaseLayout>
+
+<style>
+  /* Hero секция */
+  .areas-hero {
+    position: relative;
+    padding: 100px 0 80px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  .areas-hero::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255,0,0,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .hero-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 100px;
+    font-size: 14px;
+    color: #FF0000;
+    margin-bottom: 20px;
+  }
+  
+  .hero-title {
+    font-family: 'Caveat Brush', cursive;
+    font-size: 80px;
+    color: white;
+    margin-bottom: 20px;
+  }
+  
+  .hero-title .highlight {
+    color: #FF0000;
+  }
+  
+  .hero-subtitle {
+    font-size: 18px;
+    color: rgba(255,255,255,0.8);
+  }
+  
+  /* Преимущества локаций */
+  .areas-benefits {
+    padding: 60px 0;
+    background: white;
+  }
+  
+  .benefits-container {
+    max-width: 1520px;
+    margin: 0 auto;
+    padding: 0 26px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
+  
+  .benefit-card {
+    text-align: center;
+    padding: 32px 20px;
+    background: #f8f8f8;
+    border-radius: 24px;
+    transition: all 0.3s ease;
+  }
+  
+  .benefit-card:hover {
+    transform: translateY(-5px);
+    background: #FF0000;
+    color: white;
+  }
+  
+  .benefit-card i {
+    font-size: 40px;
+    color: #FF0000;
+    margin-bottom: 16px;
+    transition: color 0.3s ease;
+  }
+  
+  .benefit-card:hover i {
+    color: white;
+  }
+  
+  .benefit-card h3 {
+    font-family: 'Sonsie One', cursive;
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  
+  .benefit-card p {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .benefit-card:hover p {
+    color: rgba(255,255,255,0.9);
+  }
+  
+  /* Все районы */
+  .all-areas {
+    padding: 80px 0;
+    background: #f8f8f8;
+  }
+  
+  .areas-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  
+  .section-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(255,0,0,0.1);
+    border-radius: 100px;
+    font-size: 12px;
+    color: #FF0000;
+    margin-bottom: 16px;
+  }
+  
+  .areas-header h2 {
+    font-family: 'Caveat Brush', cursive;
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+  
+  .areas-header .highlight {
+    color: #FF0000;
+  }
+  
+  .areas-header p {
+    font-size: 16px;
+    color: #666;
+  }
+  
+  /* Креативная сетка районов */
+  .areas-grid {
+    max-width: 1520px;
+    margin: 0 auto;
+    padding: 0 26px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  
+  .area-card {
+    background: white;
+    border-radius: 28px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    animation: fadeInUp 0.5s ease forwards;
+    animation-delay: calc(var(--card-index) * 0.05s);
+    opacity: 0;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .area-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  }
+  
+  .area-image {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+  }
+  
+  .area-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .area-card:hover .area-image img {
+    transform: scale(1.05);
+  }
+  
+  .area-icon {
+    position: absolute;
+    bottom: -20px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    background: var(--area-color, #FF0000);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+  
+  .area-icon i {
+    font-size: 28px;
+    color: white;
+  }
+  
+  .area-content {
+    padding: 28px;
+  }
+  
+  .area-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  
+  .area-name {
+    font-family: 'Sonsie One', cursive;
+    font-size: 24px;
+    color: #1E1E1E;
+  }
+  
+  .area-stats {
+    display: flex;
+    gap: 12px;
+  }
+  
+  .stat {
+    font-size: 12px;
+    color: #666;
+  }
+  
+  .stat i {
+    margin-right: 4px;
+    color: #FF0000;
+  }
+  
+  .area-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #666;
+    margin-bottom: 16px;
+  }
+  
+  .area-services {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .service-tag {
+    font-size: 10px;
+    padding: 4px 12px;
+    background: #f0f0f0;
+    border-radius: 20px;
+    color: #555;
+  }
+  
+  .area-footer {
+    padding-top: 16px;
+    border-top: 1px solid #e0e0e0;
+  }
+  
+  .area-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--area-color, #FF0000);
+    text-decoration: none;
+    transition: gap 0.3s ease;
+  }
+  
+  .area-link:hover {
+    gap: 12px;
+  }
+  
+  /* Карта */
+  .areas-map {
+    padding: 80px 0;
+    background: white;
+  }
+  
+  .map-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .map-header h2 {
+    font-family: 'Caveat Brush', cursive;
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+  
+  .map-header .highlight {
+    color: #FF0000;
+  }
+  
+  .map-header p {
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .map-container {
+    max-width: 1520px;
+    margin: 0 auto;
+    padding: 0 26px;
+  }
+  
+  .map-placeholder {
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  }
+  
+  /* CTA */
+  .areas-cta {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #FF0000 0%, #cc0000 100%);
+    color: white;
+    text-align: center;
+  }
+  
+  .cta-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+  }
+  
+  .areas-cta h2 {
+    font-family: 'Caveat Brush', cursive;
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+  
+  .areas-cta p {
+    font-size: 18px;
+    margin-bottom: 32px;
+    opacity: 0.9;
+  }
+  
+  .cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .areas-cta .btn-primary {
+    background: white;
+    color: #FF0000;
+    padding: 14px 32px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .areas-cta .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+  
+  .areas-cta .btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+    padding: 14px 32px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .areas-cta .btn-secondary:hover {
+    background: white;
+    color: #FF0000;
+    transform: translateY(-3px);
+  }
+  
+  /* ========== АДАПТИВНОСТЬ ========== */
+  
+  @media (max-width: 1024px) {
+    .hero-title {
+      font-size: 60px;
+    }
+    
+    .benefits-container {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    
+    .areas-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 48px;
+    }
+    
+    .hero-subtitle {
+      font-size: 16px;
+    }
+    
+    .benefits-container {
+      grid-template-columns: 1fr;
+    }
+    
+    .areas-header h2 {
+      font-size: 36px;
+    }
+    
+    .areas-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .area-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    
+    .map-header h2 {
+      font-size: 36px;
+    }
+    
+    .areas-cta h2 {
+      font-size: 32px;
+    }
+    
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: 36px;
+    }
+    
+    .areas-header h2 {
+      font-size: 28px;
+    }
+    
+    .area-name {
+      font-size: 22px;
+    }
+    
+    .map-header h2 {
+      font-size: 28px;
+    }
+  }
+</style>

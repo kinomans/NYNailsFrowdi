@@ -1,0 +1,1109 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const pageTitle = "Pedicure NYC | Professional Foot Care Manhattan | NY Nails";
+const pageDescription = "Professional pedicure in NYC. Complete foot care with exfoliation, massage, and perfect polish. Relaxing and rejuvenating. Book your appointment today!";
+
+const serviceData = {
+  name: "Pedicure",
+  slug: "pedicure",
+  heroTitle: "PEDICURE",
+  heroSubtitle: "Total Foot Rejuvenation",
+  description: "Indulge in complete foot care with our professional pedicure service. From exfoliation to massage and perfect polish, we provide the ultimate relaxation for tired feet. Perfect before sandal season or year-round pampering.",
+  price: "$55",
+  duration: "60 min",
+  imageHero: "/images/service-pedicure-hero.png",
+  benefits: [
+    { icon: "fa-feet", title: "Complete Care", text: "Nails, cuticles, and calluses" },
+    { icon: "fa-scrub", title: "Exfoliation", text: "Sugar scrub for soft feet" },
+    { icon: "fa-hand-holding-heart", title: "Foot Massage", text: "Relaxing massage included" },
+    { icon: "fa-spray-can", title: "Finishing Spray", text: "Refreshing peppermint spray" }
+  ],
+  process: [
+    { step: "01", title: "Soak & Clean", text: "Warm water soak with salts" },
+    { step: "02", title: "Callus Removal", text: "Gentle exfoliation" },
+    { step: "03", title: "Nail Care", text: "Trim, shape, and cuticles" },
+    { step: "04", title: "Foot Massage", text: "Deep relaxing massage" },
+    { step: "05", title: "Polish", text: "Perfect finish" }
+  ],
+  colors: [
+    { name: "Classic Red", code: "#CC0000" },
+    { name: "French Pink", code: "#FFB6C1" },
+    { name: "Nude Beige", code: "#E8DCC8" },
+    { name: "Deep Burgundy", code: "#6B0F0F" },
+    { name: "Royal Blue", code: "#002366" },
+    { name: "Emerald Green", code: "#006B3F" },
+    { name: "Chrome Silver", code: "#C0C0C0" },
+    { name: "Black Magic", code: "#1A1A1A" }
+  ],
+  mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.2219901290355!2d-74.00369368400567!3d40.713129379330185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a316bb7ed0b%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1641234567890!5m2!1sen!2sus"
+};
+
+const availableIn = [
+  { name: "Manhattan", slug: "manhattan", price: "$55" },
+  { name: "Brooklyn", slug: "brooklyn", price: "$55" },
+  { name: "Queens", slug: "queens", price: "$55" },
+  { name: "Bronx", slug: "bronx", price: "$55" },
+  { name: "Staten Island", slug: "staten-island", price: "$55" }
+];
+
+const relatedServices = [
+  { name: "Classic Manicure", slug: "classic-manicure", price: "$35", image: "/images/service-classic-hero.png" },
+  { name: "Gel Polish", slug: "gel-polish", price: "$50", image: "/images/service-gel-hero.png" },
+  { name: "Dip Powder", slug: "dip-powder", price: "$55", image: "/images/service-dip-hero.png" }
+];
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Pedicure",
+  "description": "Professional pedicure with exfoliation, foot massage, and perfect polish.",
+  "provider": {
+    "@type": "BeautySalon",
+    "name": "NY Nails",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "123 Fifth Avenue",
+      "addressLocality": "New York",
+      "addressRegion": "NY",
+      "postalCode": "10001"
+    }
+  },
+  "areaServed": ["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island"],
+  "price": "55",
+  "priceCurrency": "USD",
+  "serviceType": "Pedicure",
+  "availableChannel": {
+    "@type": "ServiceChannel",
+    "serviceUrl": "/booking"
+  }
+};
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} schema={serviceSchema} pageType="service">
+    <section class="service-hero">
+      <div class="service-hero-bg">
+        <img src={serviceData.imageHero} alt="Pedicure at NY Nails" class="hero-bg-image" />
+        <div class="hero-overlay"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-badge">🦶 PREMIUM SERVICE</div>
+        <h1 class="hero-title">{serviceData.heroTitle}</h1>
+        <p class="hero-subtitle">{serviceData.heroSubtitle}</p>
+        <div class="hero-info">
+          <span class="info-chip">💰 {serviceData.price}</span>
+          <span class="info-chip">⏱ {serviceData.duration}</span>
+          <span class="info-chip">💆‍♀️ Massage included</span>
+        </div>
+        <div class="hero-actions">
+          <a href="/booking" class="btn-primary">Book Now →</a>
+          <a href="#process" class="btn-secondary">How It Works</a>
+        </div>
+      </div>
+      <div class="hero-scroll">
+        <span>Scroll to explore</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </div>
+    </section>
+
+    <section class="service-benefits">
+  <div class="benefits-header">
+    <span class="section-badge">WHY CHOOSE US</span>
+    <h2>Why Our <span class="highlight">Pedicure</span> Stands Out</h2>
+    <p>Complete foot care for ultimate relaxation</p>
+  </div>
+  <div class="benefits-grid">
+    <div class="benefit-card">
+      <i class="fas fa-shoe-prints"></i>
+      <h3>Complete Care</h3>
+      <p>Nails, cuticles, and calluses</p>
+    </div>
+    <div class="benefit-card">
+      <i class="fas fa-soap"></i>
+      <h3>Exfoliation</h3>
+      <p>Sugar scrub for soft feet</p>
+    </div>
+    <div class="benefit-card">
+      <i class="fas fa-hand-holding-heart"></i>
+      <h3>Foot Massage</h3>
+      <p>Relaxing massage included</p>
+    </div>
+    <div class="benefit-card">
+      <i class="fas fa-spray-can-sparkles"></i>
+      <h3>Finishing Spray</h3>
+      <p>Refreshing peppermint spray</p>
+    </div>
+  </div>
+</section>
+
+    <section class="service-description">
+      <div class="desc-container">
+        <div class="desc-content">
+          <h2>What is a <span class="highlight">Pedicure</span>?</h2>
+          <p>{serviceData.description}</p>
+          <div class="features-list">
+            <div class="feature"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#FF0000" stroke-width="2"/></svg>Full foot care routine</div>
+            <div class="feature"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#FF0000" stroke-width="2"/></svg>Callus removal</div>
+            <div class="feature"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#FF0000" stroke-width="2"/></svg>Deep moisturizing</div>
+            <div class="feature"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#FF0000" stroke-width="2"/></svg>Long-lasting polish</div>
+          </div>
+        </div>
+        <div class="desc-stats">
+          <div class="stat-circle">
+            <span class="stat-number">2-3</span>
+            <span class="stat-label">weeks wear</span>
+          </div>
+          <div class="stat-circle">
+            <span class="stat-number">60</span>
+            <span class="stat-label">minutes</span>
+          </div>
+          <div class="stat-circle">
+            <span class="stat-number">30+</span>
+            <span class="stat-label">colors</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="color-palette">
+      <div class="color-header">
+        <span class="section-badge">COLOR PALETTE</span>
+        <h2>Choose Your <span class="highlight">Perfect Shade</span></h2>
+        <p>From classic reds to subtle nudes</p>
+      </div>
+      <div class="colors-grid">
+        {serviceData.colors.map(color => (
+          <div class="color-item" style={`--swatch-color: ${color.code}`}>
+            <div class="color-swatch" style={{ backgroundColor: color.code }}></div>
+            <span class="color-name">{color.name}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="service-process" id="process">
+      <div class="process-header">
+        <span class="section-badge">HOW IT WORKS</span>
+        <h2>Your <span class="highlight">Pedicure</span> Experience</h2>
+        <p>From tired feet to total rejuvenation</p>
+      </div>
+      <div class="process-steps">
+        {serviceData.process.map(step => (
+          <div class="process-step">
+            <div class="step-number">{step.step}</div>
+            <div class="step-content">
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </div>
+            <div class="step-arrow">→</div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="service-availability">
+      <div class="availability-header">
+        <span class="section-badge">AVAILABLE IN</span>
+        <h2>Find Us Across <span class="highlight">New York</span></h2>
+        <p>Same premium service, convenient locations</p>
+      </div>
+      <div class="availability-grid">
+        {availableIn.map(area => (
+          <a href={`/areas/${area.slug}`} class="availability-card">
+            <span class="area-name">{area.name}</span>
+            <span class="area-price">{area.price}</span>
+            <span class="area-arrow">→</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="service-map">
+      <div class="map-container">
+        <div class="map-info">
+          <div class="info-icon">📍</div>
+          <h2>Visit Our <span class="highlight">Flagship Location</span></h2>
+          <p>123 Fifth Avenue, New York, NY 10001</p>
+          <div class="info-details">
+            <div class="detail"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor"/><polyline points="12 6 12 12 16 14" stroke="currentColor"/></svg><span>Mon-Fri: 9am-9pm | Sat-Sun: 10am-8pm</span></div>
+            <div class="detail"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor"/></svg><span>+1 (212) 555-1234</span></div>
+          </div>
+          <a href={serviceData.mapEmbed} target="_blank" class="map-link">Get Directions →</a>
+        </div>
+        <div class="map-embed">
+          <iframe src={serviceData.mapEmbed} width="100%" height="400" style="border:0; border-radius: 32px;" allowfullscreen="" loading="lazy" title="NY Nails Location"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="related-services">
+      <div class="related-header">
+        <h2>You Might Also <span class="highlight">Like</span></h2>
+        <p>Explore our other premium nail services</p>
+      </div>
+      <div class="related-grid">
+        {relatedServices.map(service => (
+          <a href={`/services/${service.slug}`} class="related-card">
+            <div class="related-image">
+              <img src={service.image} alt={service.name} />
+            </div>
+            <div class="related-info">
+              <h3>{service.name}</h3>
+              <span class="related-price">{service.price}</span>
+            </div>
+            <span class="related-arrow">→</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="service-cta">
+      <div class="cta-content">
+        <div class="cta-icon">🦶</div>
+        <h2>Ready for Total Foot Rejuvenation?</h2>
+        <p>Book your appointment online or walk in today — your feet deserve it!</p>
+        <div class="cta-buttons">
+          <a href="/booking" class="btn-primary">Book Now</a>
+          <a href="/contact" class="btn-secondary">Contact Us</a>
+        </div>
+      </div>
+    </section>
+</BaseLayout>
+
+<style>
+  /* Hero секция */
+  .service-hero {
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  .service-hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+  
+  .hero-bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.4) 100%);
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    padding: 2rem;
+  }
+  
+  .hero-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 100px;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  
+  .hero-title {
+    font-family: 'Caveat Brush', cursive;
+    font-size: 100px;
+    margin: 0 0 20px;
+    line-height: 1;
+  }
+  
+  .hero-subtitle {
+    font-size: 24px;
+    margin-bottom: 32px;
+    opacity: 0.9;
+  }
+  
+  .hero-info {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  
+  .info-chip {
+    padding: 8px 20px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 100px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  .hero-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .btn-primary, .btn-secondary {
+    padding: 14px 32px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary {
+    background: #FF0000;
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background: #cc0000;
+    transform: translateY(-3px);
+  }
+  
+  .btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+  
+  .btn-secondary:hover {
+    background: white;
+    color: #FF0000;
+    transform: translateY(-3px);
+  }
+  
+  .hero-scroll {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    gap: 8px;
+    font-size: 12px;
+    animation: bounce 2s infinite;
+  }
+  
+  @keyframes bounce {
+    0%,100%{transform:translateX(-50%) translateY(0)}
+    50%{transform:translateX(-50%) translateY(-10px)}
+  }
+  
+  /* Преимущества */
+  .service-benefits {
+    padding: 80px 0;
+    background: #f8f8f8;
+  }
+  
+  .benefits-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  .section-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(255,0,0,0.1);
+    border-radius: 100px;
+    font-size: 12px;
+    color: #FF0000;
+    margin-bottom: 16px;
+  }
+  
+  .benefits-header h2 {
+    font-family: 'Caveat Brush', cursive;
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+  
+  .highlight {
+    color: #FF0000;
+  }
+  
+  .benefits-header p {
+    font-size: 16px;
+    color: #666;
+  }
+  
+  .benefits-grid {
+    max-width: 1520px;
+    margin: 0 auto;
+    padding: 0 26px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
+  
+  .benefit-card {
+    text-align: center;
+    padding: 32px;
+    background: white;
+    border-radius: 24px;
+    transition: transform 0.3s ease;
+  }
+  
+  .benefit-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .benefit-card i {
+    font-size: 40px;
+    color: #FF0000;
+    margin-bottom: 16px;
+  }
+  
+  .benefit-card h3 {
+    font-family: 'Sonsie One', cursive;
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  
+  .benefit-card p {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  /* Описание услуги - исправленная адаптивность */
+  .service-description {
+    padding: 80px 0;
+    background: white;
+    overflow-x: hidden;
+  }
+  
+  .desc-container {
+    max-width: 1520px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 26px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 50px;
+    align-items: center;
+    box-sizing: border-box;
+  }
+  
+  .desc-content {
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+  
+  .desc-content h2 {
+    font-family: 'Caveat Brush', cursive;
+    font-size: 48px;
+    margin-bottom: 24px;
+    word-break: break-word;
+  }
+  
+  .desc-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 24px;
+    word-break: break-word;
+  }
+  
+  .features-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .feature {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    word-break: break-word;
+  }
+  
+  .desc-stats {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .stat-circle {
+    text-align: center;
+    padding: 24px;
+    background: linear-gradient(135deg, #FF0000, #cc0000);
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    flex-shrink: 0;
+  }
+  
+  .stat-number {
+    font-family: 'Sonsie One', cursive;
+    font-size: 28px;
+  }
+  
+  .stat-label {
+    font-size: 12px;
+  }
+  
+  /* Цветовая палитра с неоновым эффектом */
+  .color-palette {
+    padding: 80px 0;
+    background: #f8f8f8;
+  }
+  
+  .color-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  .color-header h2 {
+    font-family: 'Caveat Brush', cursive;
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+  
+  .colors-grid {
+    max-width: 1520px;
+    margin: 0 auto;
+    padding: 0 26px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 16px;
+  }
+  
+  .color-item {
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .color-swatch {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 0 auto 8px;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .color-item:hover .color-swatch {
+    transform: scale(1.15);
+    box-shadow: 0 0 15px var(--swatch-color), 0 0 30px var(--swatch-color);
+  }
+  
+  .color-item:hover .color-name {
+    color: var(--swatch-color);
+    font-weight: 500;
+  }
+  
+  .color-name {
+    font-size: 12px;
+    color: #666;
+    transition: color 0.3s ease;
+  }
+  
+  /* Процесс */
+  .service-process {
+    padding: 80px 0;
+    background: white;
+  }
+  
+  .process-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  .process-header h2 {
+    font-family: 'Caveat Brush', cursive;
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+  
+  .process-steps {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 26px;
+  }
+  
+  .process-step {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 24px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .step-number {
+    font-family: 'Sonsie One', cursive;
+    font-size: 36px;
+    color: #FF0000;
+    width: 70px;
+  }
+  
+  .step-content {
+    flex: 1;
+  }
+  
+  .step-content h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  
+  .step-content p {
+    color: #666;
+  }
+  
+  .step-arrow {
+    font-size: 24px;
+    color: #FF0000;
+  }
+  
+  /* Доступность */
+  .service-availability {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #FF0000 0%, #cc0000 100%);
+    color: white;
+  }
+  
+  .availability-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  .availability-header .section-badge {
+    background: rgba(255,255,255,0.2);
+    color: white;
+  }
+  
+  .availability-header h2 {
+    font-family: 'Caveat Brush', cursive;
+    font-size: 48px;
+    margin-bottom: 16px;
+    color: white;
+  }
+  
+  .availability-header .highlight {
+    color: rgba(255,255,255,0.9);
+  }
+  
+  .availability-grid {
+    max-width: 1520px;
+    margin: 0 auto;
+    padding: 0 26px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+  }
+  
+  .availability-card {
+    background: white;
+    padding: 24px;
+    border-radius: 24px;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+  
+  .availability-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .area-name {
+    font-family: 'Sonsie One', cursive;
+    font-size: 18px;
+    color: #1E1E1E;
+  }
+  
+  .area-price {
+    color: #FF0000;
+    font-weight: 600;
+  }
+  
+  .area-arrow {
+    color: #FF0000;
+  }
+  
+  /* Карта */
+  .service-map {
+    padding: 80px 0;
+    background: #f8f8f8;
+  }
+  
+  .map-container {
+    max-width: 1520px;
+    margin: 0 auto;
+    padding: 0 26px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+  }
+  
+  .info-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+  
+  .map-info h2 {
+    font-family: 'Caveat Brush', cursive;
+    font-size: 40px;
+    margin-bottom: 16px;
+  }
+  
+  .map-info p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 24px;
+  }
+  
+  .info-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  
+  .detail {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #555;
+  }
+  
+  .map-link {
+    color: #FF0000;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .map-embed iframe {
+    width: 100%;
+    border-radius: 32px;
+  }
+  
+  /* Похожие услуги */
+  .related-services {
+    padding: 80px 0;
+    background: white;
+  }
+  
+  .related-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  .related-header h2 {
+    font-family: 'Caveat Brush', cursive;
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+  
+  .related-grid {
+    max-width: 1520px;
+    margin: 0 auto;
+    padding: 0 26px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  
+  .related-card {
+    background: #f8f8f8;
+    border-radius: 24px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    gap: 16px;
+  }
+  
+  .related-card:hover {
+    transform: translateY(-5px);
+    background: #FF0000;
+  }
+  
+  .related-card:hover h3,
+  .related-card:hover .related-price,
+  .related-card:hover .related-arrow {
+    color: white;
+  }
+  
+  .related-image {
+    width: 70px;
+    height: 70px;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  
+  .related-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .related-info {
+    flex: 1;
+  }
+  
+  .related-info h3 {
+    font-family: 'Sonsie One', cursive;
+    font-size: 18px;
+    color: #1E1E1E;
+    margin-bottom: 4px;
+  }
+  
+  .related-price {
+    color: #FF0000;
+    font-weight: 600;
+  }
+  
+  .related-arrow {
+    font-size: 24px;
+    color: #FF0000;
+  }
+  
+  /* CTA */
+  .service-cta {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #FF0000 0%, #cc0000 100%);
+    color: white;
+    text-align: center;
+  }
+  
+  .cta-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+  }
+  
+  .service-cta h2 {
+    font-family: 'Caveat Brush', cursive;
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+  
+  .service-cta p {
+    font-size: 18px;
+    margin-bottom: 32px;
+  }
+  
+  .cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .service-cta .btn-primary {
+    background: white;
+    color: #FF0000;
+  }
+  
+  .service-cta .btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+  
+  /* ========== АДАПТИВНОСТЬ ========== */
+  
+  /* Для service-description */
+  @media (max-width: 1024px) {
+    .desc-container {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 0 20px;
+    }
+    
+    .desc-stats {
+      justify-content: center;
+    }
+    
+    .desc-content h2 {
+      font-size: 40px;
+      text-align: center;
+    }
+    
+    .desc-content p {
+      font-size: 15px;
+      text-align: center;
+    }
+    
+    .features-list {
+      grid-template-columns: 1fr;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .service-description {
+      padding: 60px 0;
+    }
+    
+    .desc-container {
+      padding: 0 16px;
+    }
+    
+    .desc-content h2 {
+      font-size: 36px;
+    }
+    
+    .desc-content p {
+      font-size: 14px;
+    }
+    
+    .feature {
+      font-size: 13px;
+    }
+    
+    .desc-stats {
+      gap: 20px;
+    }
+    
+    .stat-circle {
+      
+      padding: 16px;
+    }
+    
+    .stat-number {
+      font-size: 28px;
+    }
+    
+    .stat-label {
+      font-size: 11px;
+    }
+  }
+  
+  @media (max-width: 550px) {
+    .desc-stats {
+      align-items: center;
+    }
+    
+    .stat-circle {
+      width: 120px;
+      height: 120px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .service-description {
+      padding: 40px 0;
+    }
+    
+    .desc-container {
+      padding: 0 12px;
+    }
+    
+    .desc-content h2 {
+      font-size: 32px;
+    }
+    
+    .desc-content p {
+      font-size: 13px;
+    }
+    
+    .features-list {
+      gap: 8px;
+    }
+    
+    .feature {
+      font-size: 12px;
+    }
+    
+    .stat-circle {
+      width: 100px;
+      height: 100px;
+    }
+    
+    .stat-number {
+      font-size: 24px;
+    }
+    
+    .stat-label {
+      font-size: 10px;
+    }
+  }
+  
+  @media (max-width: 380px) {
+    .desc-content h2 {
+      font-size: 28px;
+    }
+    
+    .desc-content p {
+      font-size: 12px;
+    }
+    
+    .stat-circle {
+      width: 90px;
+      height: 90px;
+    }
+    
+    .stat-number {
+      font-size: 22px;
+    }
+  }
+  
+  /* Адаптив для остальных секций */
+  @media (max-width: 1200px) {
+    .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+    .colors-grid { grid-template-columns: repeat(4, 1fr); }
+    .availability-grid { grid-template-columns: repeat(3, 1fr); }
+    .related-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  
+  @media (max-width: 1024px) {
+    .hero-title { font-size: 70px; }
+    .map-container { grid-template-columns: 1fr; }
+    .colors-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .color-swatch { width: 50px; height: 50px; }
+  }
+  
+  @media (max-width: 768px) {
+    .hero-title { font-size: 50px; }
+    .hero-subtitle { font-size: 18px; }
+    .hero-actions { flex-direction: column; align-items: center; }
+    .benefits-grid { grid-template-columns: 1fr; }
+    .availability-grid { grid-template-columns: 1fr; }
+    .related-grid { grid-template-columns: 1fr; }
+    .process-step { flex-direction: column; text-align: center; }
+    .step-arrow { transform: rotate(90deg); }
+    .colors-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .color-swatch { width: 55px; height: 55px; }
+  }
+  
+  @media (max-width: 640px) {
+    .colors-grid { grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .color-swatch { width: 45px; height: 45px; }
+    .color-name { font-size: 10px; }
+  }
+  
+  @media (max-width: 480px) {
+    .colors-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .color-swatch { width: 55px; height: 55px; }
+  }
+</style>

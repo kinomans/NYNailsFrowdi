@@ -1,0 +1,926 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Nail Blog NYC | Latest Nail Trends & Tips | NY Nails";
+const pageDescription = "Discover the latest nail trends, care tips, and design inspiration from NY Nails. Expert advice from our professional nail artists in Manhattan, Brooklyn & Queens.";
+
+// Данные статей блога
+const blogPosts = [
+  {
+    id: 1,
+    title: "Top Nail Trends 2026: What's Hot in NYC",
+    excerpt: "From chrome finishes to 3D art — discover the biggest nail trends taking over New York this year.",
+    image: "/images/blog-trends-2026.png",
+    category: "Trends",
+    categorySlug: "trends",
+    date: "March 15, 2026",
+    readTime: "5 min read",
+    author: "Sarah Johnson",
+    authorAvatar: "/images/sarahreview.png",
+    featured: true,
+    tags: ["Trends", "2026", "NYC"]
+  },
+  {
+    id: 2,
+    title: "How to Make Your Gel Manicure Last 3+ Weeks",
+    excerpt: "Expert tips and tricks to extend the life of your gel polish and prevent chipping.",
+    image: "/images/blog-gel-care.png",
+    category: "Care Tips",
+    categorySlug: "care",
+    date: "March 10, 2026",
+    readTime: "4 min read",
+    author: "Michael Chen",
+    authorAvatar: "/images/michaelreview.png",
+    featured: false,
+    tags: ["Gel", "Care Tips", "Long-lasting"]
+  },
+  {
+    id: 3,
+    title: "The Ultimate Guide to Nail Shapes",
+    excerpt: "Almond, coffin, stiletto, or square? Find the perfect nail shape for your hands.",
+    image: "/images/blog-nail-shapes.png",
+    category: "Guides",
+    categorySlug: "guides",
+    date: "March 5, 2026",
+    readTime: "6 min read",
+    author: "Emily Rodriguez",
+    authorAvatar: "/images/emilyreview.png",
+    featured: false,
+    tags: ["Nail Shapes", "Guide", "Styling"]
+  },
+  {
+    id: 4,
+    title: "Spring Nail Colors 2026: Pastels & Neons",
+    excerpt: "The hottest spring color palette is here — from soft lavender to electric lime.",
+    image: "/images/blog-spring-colors.png",
+    category: "Colors",
+    categorySlug: "colors",
+    date: "February 28, 2026",
+    readTime: "4 min read",
+    author: "Jessica Williams",
+    authorAvatar: "/images/jessicareview.png",
+    featured: true,
+    tags: ["Spring", "Colors", "Trends"]
+  },
+  {
+    id: 5,
+    title: "Nail Care 101: Essential Routine for Healthy Nails",
+    excerpt: "Daily habits and products that will transform your natural nail health.",
+    image: "/images/blog-nail-care.png",
+    category: "Care Tips",
+    categorySlug: "care",
+    date: "February 20, 2026",
+    readTime: "7 min read",
+    author: "Sarah Johnson",
+    authorAvatar: "/images/sarahreview.png",
+    featured: false,
+    tags: ["Nail Care", "Health", "Routine"]
+  },
+  {
+    id: 6,
+    title: "Gel vs Dip Powder: Which Is Right for You?",
+    excerpt: "Compare durability, application, removal, and cost to make the best choice.",
+    image: "/images/blog-gel-vs-dip.png",
+    category: "Guides",
+    categorySlug: "guides",
+    date: "February 15, 2026",
+    readTime: "6 min read",
+    author: "Michael Chen",
+    authorAvatar: "/images/michaelreview.png",
+    featured: false,
+    tags: ["Gel", "Dip Powder", "Comparison"]
+  },
+  {
+    id: 7,
+    title: "Wedding Nail Inspiration: 10 Bridal Designs",
+    excerpt: "From classic French to intricate floral — perfect nails for your big day.",
+    image: "/images/blog-bridal.png",
+    category: "Inspiration",
+    categorySlug: "inspiration",
+    date: "February 10, 2026",
+    readTime: "5 min read",
+    author: "Emily Rodriguez",
+    authorAvatar: "/images/emilyreview.png",
+    featured: true,
+    tags: ["Bridal", "Wedding", "Inspiration"]
+  },
+  {
+    id: 8,
+    title: "How to Remove Gel Polish at Home Safely",
+    excerpt: "Step-by-step guide to remove gel polish without damaging your natural nails.",
+    image: "/images/blog-gel-removal.png",
+    category: "Care Tips",
+    categorySlug: "care",
+    date: "February 5, 2026",
+    readTime: "4 min read",
+    author: "Jessica Williams",
+    authorAvatar: "/images/jessicareview.png",
+    featured: false,
+    tags: ["Gel Removal", "DIY", "Care Tips"]
+  },
+  {
+    id: 9,
+    title: "Nail Art Trends Taking Over Instagram",
+    excerpt: "The most viral nail art designs from NY's top artists.",
+    image: "/images/blog-instagram-trends.png",
+    category: "Trends",
+    categorySlug: "trends",
+    date: "January 28, 2026",
+    readTime: "5 min read",
+    author: "Sarah Johnson",
+    authorAvatar: "/images/sarahreview.png",
+    featured: false,
+    tags: ["Instagram", "Nail Art", "Trends"]
+  }
+];
+
+const categories = [
+  { id: "all", name: "All Posts", icon: "fa-newspaper" },
+  { id: "trends", name: "Trends", icon: "fa-chart-line" },
+  { id: "care", name: "Care Tips", icon: "fa-hand-peace" },
+  { id: "guides", name: "Guides", icon: "fa-book-open" },
+  { id: "colors", name: "Colors", icon: "fa-palette" },
+  { id: "inspiration", name: "Inspiration", icon: "fa-star" }
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} pageType="blog">
+    <!-- Hero секция -->
+    <section class="blog-hero">
+      <div class="hero-content">
+        <div class="hero-badge">📖 LATEST FROM OUR STUDIO</div>
+        <h1 class="hero-title">NAIL<span class="highlight"> BLOG</span></h1>
+        <p class="hero-subtitle">Expert tips, trends, and inspiration from<br>New York's premier nail artists</p>
+      </div>
+    </section>
+
+    <!-- Фильтры категорий -->
+    <section class="blog-filters">
+      <div class="filters-container">
+        {categories.map(cat => (
+          <button class="filter-btn" data-filter={cat.id}>
+            <i class={`fas ${cat.icon}`}></i>
+            <span>{cat.name}</span>
+          </button>
+        ))}
+      </div>
+    </section>
+
+    <!-- Featured Post (первая крупная статья) -->
+    <section class="featured-post">
+      {blogPosts.filter(post => post.featured).slice(0, 1).map(post => (
+        <div class="featured-card">
+          <div class="featured-image">
+            <img src={post.image} alt={post.title} loading="lazy" />
+            <span class="category-badge">{post.category}</span>
+          </div>
+          <div class="featured-content">
+            <div class="post-meta">
+              <span class="post-date">
+                <i class="fas fa-calendar-alt"></i> {post.date}
+              </span>
+              <span class="post-readtime">
+                <i class="fas fa-clock"></i> {post.readTime}
+              </span>
+            </div>
+            <h2 class="featured-title">{post.title}</h2>
+            <p class="featured-excerpt">{post.excerpt}</p>
+            <div class="featured-footer">
+              <div class="post-author">
+                <img src={post.authorAvatar} alt={post.author} class="author-avatar" />
+                <span class="author-name">{post.author}</span>
+              </div>
+              <a href={`/blog/${post.id}`} class="read-more">
+                Read Article <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </section>
+
+    <!-- Masonry Blog Grid -->
+    <section class="blog-grid">
+      <div class="grid-container" id="blogGrid">
+        {blogPosts.filter(post => !post.featured || post.id !== blogPosts.find(p => p.featured)?.id).map((post, index) => (
+          <div 
+            class="blog-card" 
+            data-category={post.categorySlug}
+            data-id={post.id}
+            style={`--card-index: ${index}`}
+          >
+            <div class="card-image">
+              <img src={post.image} alt={post.title} loading="lazy" />
+              <span class="category-tag">{post.category}</span>
+            </div>
+            <div class="card-content">
+              <div class="post-meta">
+                <span class="post-date">
+                  <i class="fas fa-calendar-alt"></i> {post.date}
+                </span>
+                <span class="post-readtime">
+                  <i class="fas fa-clock"></i> {post.readTime}
+                </span>
+              </div>
+              <h3 class="post-title">{post.title}</h3>
+              <p class="post-excerpt">{post.excerpt}</p>
+              <div class="post-tags">
+                {post.tags.map(tag => (
+                  <span class="post-tag">{tag}</span>
+                ))}
+              </div>
+              <div class="card-footer">
+                <div class="post-author">
+                  <img src={post.authorAvatar} alt={post.author} class="author-avatar-small" />
+                  <span class="author-name-small">{post.author}</span>
+                </div>
+                <a href={`/blog/${post.id}`} class="read-more-small">
+                  Read <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Newsletter секция -->
+    <section class="blog-newsletter">
+      <div class="newsletter-content">
+        <div class="newsletter-icon">📧</div>
+        <h2>Get Nail Inspiration In Your Inbox</h2>
+        <p>Subscribe to our newsletter for exclusive tips, trends, and special offers</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Enter your email address" required />
+          <button type="submit">Subscribe <i class="fas fa-paper-plane"></i></button>
+        </form>
+        <p class="newsletter-note">No spam. Unsubscribe anytime.</p>
+      </div>
+    </section>
+
+    <!-- CTA секция -->
+    <section class="blog-cta">
+      <div class="cta-content">
+        <div class="cta-icon">💅</div>
+        <h2>Ready to Try These Looks?</h2>
+        <p>Book your appointment today and let our artists bring these designs to life</p>
+        <div class="cta-buttons">
+          <a href="/booking" class="btn-primary">Book Now →</a>
+          <a href="/portfolio" class="btn-secondary">View Portfolio</a>
+        </div>
+      </div>
+    </section>
+</BaseLayout>
+
+<style>
+  /* Hero секция */
+  .blog-hero {
+    position: relative;
+    padding: 80px 0 60px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  .blog-hero::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255,0,0,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .hero-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 100px;
+    font-size: 14px;
+    color: #FF0000;
+    margin-bottom: 20px;
+  }
+  
+  .hero-title {
+    font-family: 'Caveat Brush', cursive;
+    font-size: 80px;
+    color: white;
+    margin-bottom: 20px;
+  }
+  
+  .hero-title .highlight {
+    color: #FF0000;
+  }
+  
+  .hero-subtitle {
+    font-size: 18px;
+    color: rgba(255,255,255,0.8);
+  }
+  
+  /* Фильтры */
+  .blog-filters {
+    padding: 40px 0;
+    background: white;
+    position: sticky;
+    top: 60px;
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  }
+  
+  .filters-container {
+    max-width: 1520px;
+    margin: 0 auto;
+    padding: 0 26px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  
+  .filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 100px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .filter-btn i {
+    font-size: 14px;
+  }
+  
+  .filter-btn:hover {
+    background: #FF0000;
+    color: white;
+    transform: translateY(-2px);
+  }
+  
+  .filter-btn.active {
+    background: #FF0000;
+    color: white;
+  }
+  
+  /* Featured Post */
+  .featured-post {
+    max-width: 1520px;
+    margin: 40px auto 60px;
+    padding: 0 26px;
+  }
+  
+  .featured-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    background: white;
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .featured-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .featured-image {
+  position: relative;
+  height: 400px;  /* Уменьши с 100% на фиксированную высоту */
+  overflow: hidden;
+}
+
+.featured-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+  
+  .featured-card:hover .featured-image img {
+    transform: scale(1.05);
+  }
+  
+  .category-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 6px 14px;
+    background: #FF0000;
+    color: white;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  
+  .featured-content {
+    padding: 40px 40px 40px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .post-meta {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #888;
+  }
+  
+  .post-meta i {
+    margin-right: 6px;
+  }
+  
+  .featured-title {
+    font-family: 'Sonsie One', cursive;
+    font-size: 32px;
+    color: #1E1E1E;
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+  
+  .featured-excerpt {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 24px;
+  }
+  
+  .featured-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .post-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .author-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .author-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1E1E1E;
+  }
+  
+  .read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #FF0000;
+    text-decoration: none;
+    transition: gap 0.3s ease;
+  }
+  
+  .read-more:hover {
+    gap: 12px;
+  }
+  
+  /* Blog Grid Masonry */
+  .blog-grid {
+    padding: 0 0 60px;
+    background: #f8f8f8;
+  }
+  
+  .grid-container {
+    max-width: 1520px;
+    margin: 0 auto;
+    padding: 0 26px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  
+  .blog-card {
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.5s ease forwards;
+    animation-delay: calc(var(--card-index) * 0.05s);
+    opacity: 0;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  }
+  
+  .card-image {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+  }
+  
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .blog-card:hover .card-image img {
+    transform: scale(1.05);
+  }
+  
+  .category-tag {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 4px 12px;
+    background: #FF0000;
+    color: white;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  
+  .card-content {
+    padding: 24px;
+  }
+  
+  .post-title {
+    font-family: 'Sonsie One', cursive;
+    font-size: 20px;
+    color: #1E1E1E;
+    margin: 12px 0;
+    line-height: 1.3;
+  }
+  
+  .post-excerpt {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #666;
+    margin-bottom: 16px;
+  }
+  
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .post-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    padding: 4px 10px;
+    background: #f0f0f0;
+    border-radius: 20px;
+    color: #555;
+  }
+  
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid #e0e0e0;
+  }
+  
+  .author-avatar-small {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .author-name-small {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: #1E1E1E;
+  }
+  
+  .read-more-small {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: #FF0000;
+    text-decoration: none;
+    transition: gap 0.3s ease;
+  }
+  
+  .read-more-small:hover {
+    gap: 10px;
+  }
+  
+  /* Скрытие при фильтрации */
+  .blog-card.hide {
+    display: none;
+  }
+  
+  /* Newsletter */
+  .blog-newsletter {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+    text-align: center;
+  }
+  
+  .newsletter-content {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .newsletter-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+  }
+  
+  .blog-newsletter h2 {
+    font-family: 'Caveat Brush', cursive;
+    font-size: 40px;
+    color: white;
+    margin-bottom: 16px;
+  }
+  
+  .blog-newsletter p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 24px;
+  }
+  
+  .newsletter-form {
+    display: flex;
+    gap: 12px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .newsletter-form input {
+    flex: 1;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 100px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+  }
+  
+  .newsletter-form input:focus {
+    outline: none;
+  }
+  
+  .newsletter-form button {
+    padding: 14px 28px;
+    background: #FF0000;
+    color: white;
+    border: none;
+    border-radius: 100px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .newsletter-form button:hover {
+    background: #cc0000;
+    transform: translateY(-2px);
+  }
+  
+  .newsletter-note {
+    font-size: 12px;
+    margin-top: 16px;
+    opacity: 0.6;
+  }
+  
+  /* CTA */
+  .blog-cta {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #FF0000 0%, #cc0000 100%);
+    color: white;
+    text-align: center;
+  }
+  
+  .cta-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+  }
+  
+  .blog-cta h2 {
+    font-family: 'Caveat Brush', cursive;
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+  
+  .blog-cta p {
+    font-size: 18px;
+    margin-bottom: 32px;
+    opacity: 0.9;
+  }
+  
+  .cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .blog-cta .btn-primary {
+    background: white;
+    color: #FF0000;
+    padding: 14px 32px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .blog-cta .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+  
+  .blog-cta .btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+    padding: 14px 32px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .blog-cta .btn-secondary:hover {
+    background: white;
+    color: #FF0000;
+    transform: translateY(-3px);
+  }
+  
+  /* ========== АДАПТИВНОСТЬ ========== */
+  
+  @media (max-width: 1024px) {
+    .hero-title {
+      font-size: 60px;
+    }
+    
+    .featured-card {
+      grid-template-columns: 1fr;
+    }
+    
+    .featured-content {
+      padding: 30px;
+    }
+    
+    .grid-container {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 48px;
+    }
+    
+    .hero-subtitle {
+      font-size: 16px;
+    }
+    
+    .blog-filters {
+      position: relative;
+      top: 0;
+    }
+    
+    .filters-container {
+      gap: 8px;
+    }
+    
+    .filter-btn {
+      padding: 6px 16px;
+      font-size: 12px;
+    }
+    
+    .featured-title {
+      font-size: 28px;
+    }
+    
+    .grid-container {
+      grid-template-columns: 1fr;
+    }
+    
+    .blog-newsletter h2 {
+      font-size: 32px;
+    }
+    
+    .newsletter-form {
+      flex-direction: column;
+    }
+    
+    .blog-cta h2 {
+      font-size: 32px;
+    }
+    
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: 36px;
+    }
+    
+    .featured-title {
+      font-size: 24px;
+    }
+    
+    .featured-excerpt {
+      font-size: 14px;
+    }
+    
+    .featured-footer {
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    
+    .filter-btn span {
+      display: none;
+    }
+    
+    .filter-btn i {
+      font-size: 18px;
+      margin: 0;
+    }
+    
+    .filter-btn {
+      padding: 12px;
+    }
+  }
+</style>
+
+<script>
+  // Фильтрация блога
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const blogCards = document.querySelectorAll('.blog-card');
+  
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Убираем active у всех кнопок
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      // Добавляем active текущей
+      button.classList.add('active');
+      
+      const filterValue = button.getAttribute('data-filter');
+      
+      blogCards.forEach(card => {
+        const cardCategory = card.getAttribute('data-category');
+        
+        if (filterValue === 'all' || cardCategory === filterValue) {
+          card.classList.remove('hide');
+          card.style.animation = 'fadeInUp 0.4s ease forwards';
+        } else {
+          card.classList.add('hide');
+        }
+      });
+    });
+  });
+</script>

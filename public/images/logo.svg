@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 238.38 231.84">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #c1272d;
+      }
+
+      .cls-1, .cls-2 {
+        stroke: #333;
+        stroke-miterlimit: 10;
+        stroke-width: 3.56px;
+      }
+
+      .cls-2 {
+        fill: #f7931e;
+      }
+    </style>
+  </defs>
+  <path class="cls-1" d="M127.22,121.59c-9.83,58.63-27.75,108.47-61.98,108.47S12.18,177.67,3.26,121.59C-6.15,62.43,31.01,13.13,65.24,13.13s71.88,49.39,61.98,108.47Z"/>
+  <polygon id="Horizontal_Outline" data-name="Horizontal Outline" class="cls-2" points="228.29 50.13 157.18 50.3 167.05 4.75 113.23 50.4 42.13 50.57 79.97 78.61 26.16 124.26 103.37 95.95 141.21 123.99 151.08 78.45 228.29 50.13"/>
+</svg>

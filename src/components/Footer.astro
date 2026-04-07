@@ -1,0 +1,606 @@
+---
+// Данные для футера
+const currentYear = new Date().getFullYear();
+
+const footerNav = {
+  services: [
+    { name: "Classic Manicure", url: "/services/classic-manicure" },
+    { name: "Gel Polish", url: "/services/gel-polish" },
+    { name: "Nail Extensions", url: "/services/nail-extensions" },
+    { name: "Nail Art Design", url: "/services/nail-art" },
+    { name: "Pedicure", url: "/services/pedicure" }
+  ],
+  areas: [
+    { name: "Manhattan", url: "/areas/manhattan" },
+    { name: "Brooklyn", url: "/areas/brooklyn" },
+    { name: "Queens", url: "/areas/queens" },
+    { name: "Bronx", url: "/areas/bronx" },
+    { name: "Staten Island", url: "/areas/staten-island" }
+  ],
+  company: [
+    { name: "About Us", url: "/about" },
+    { name: "Portfolio", url: "/portfolio" },
+    { name: "Blog", url: "/blog" },
+    { name: "Contact", url: "/contact" },
+    { name: "FAQ", url: "/faq" }
+  ],
+  legal: [
+    { name: "Privacy Policy", url: "/privacy" },
+    { name: "Terms of Service", url: "/terms" },
+    { name: "Cancellation Policy", url: "/cancellation" },
+    { name: "Gift Cards", url: "/gift-cards" }
+  ]
+};
+
+const socialLinks = [
+  { name: "Instagram", icon: "instagram", url: "/social", color: "#E4405F" },
+  { name: "TikTok", icon: "tiktok", url: "/social", color: "#000000" },
+  { name: "Facebook", icon: "facebook", url: "/social", color: "#1877F2" },
+  { name: "Pinterest", icon: "pinterest", url: "/social", color: "#BD081C" }
+];
+
+const contactInfo = {
+  phone: "+1 (212) 555-1234",
+  phoneFormatted: "+12125551234",
+  email: "hello@nynails.com",
+  address: "123 Fifth Avenue, New York, NY 10001",
+  addressLink: "https://maps.google.com/?q=123+Fifth+Avenue+New+York+NY"
+};
+
+const hours = [
+  { day: "Mon - Fri", hours: "9:00 AM — 9:00 PM" },
+  { day: "Saturday", hours: "10:00 AM — 8:00 PM" },
+  { day: "Sunday", hours: "10:00 AM — 6:00 PM" }
+];
+---
+
+<footer class="footer">
+  <!-- Декоративные геометрические элементы -->
+  <div class="footer-shape shape-1"></div>
+  <div class="footer-shape shape-2"></div>
+  <div class="footer-shape shape-3"></div>
+  
+  <div class="footer-container">
+    <!-- Основная сетка футера -->
+    <div class="footer-grid">
+      
+      <!-- Колонка 1: Бренд и описание -->
+      <div class="footer-col brand-col">
+        <div class="footer-logo">
+  <a href="/" class="footer-logo-link">
+    <img 
+      src="/images/logo.svg" 
+      alt="NY Nails - Premium Nail Salon in New York" 
+      class="footer-logo-img"
+      width="auto"
+      height="40"
+    />
+  </a>
+    <span class="logo-text">NY<span class="logo-accent">Nails</span></span>
+
+</div>
+        <p class="brand-description">
+          Premium nail care and design services across New York. 
+          Transforming nails into art since 2018.
+        </p>
+        <div class="social-links">
+          {socialLinks.map(social => (
+            <a 
+              href={social.url} 
+              class="social-link" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              aria-label={social.name}
+              style={`--social-color: ${social.color}`}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                {social.icon === "instagram" && (
+                  <>
+                    <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/>
+                    <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/>
+                    <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+                  </>
+                )}
+                {social.icon === "tiktok" && (
+                  <path d="M19.5 5.5c-1.8 0-3.5-1-4.5-2.5v10c0 2.5-2 4.5-4.5 4.5S6 15.5 6 13s2-4.5 4.5-4.5c.3 0 .6 0 .9.1V12c-.3-.1-.6-.1-.9-.1-1.4 0-2.5 1.1-2.5 2.5s1.1 2.5 2.5 2.5 2.5-1.1 2.5-2.5V2.5h2.5c0 2 1.5 3.5 3.5 3.5v2z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                )}
+                {social.icon === "facebook" && (
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                )}
+                {social.icon === "pinterest" && (
+                  <>
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M8 16s1.5-2 1-5c-.5-3 3-4 4-2 1 2 0 5-2 5-2 0-1-3 0-4" stroke="currentColor" stroke-width="1.5"/>
+                  </>
+                )}
+              </svg>
+            </a>
+          ))}
+        </div>
+      </div>
+      
+      <!-- Колонка 2: Услуги -->
+      <div class="footer-col">
+        <h3 class="footer-heading">Our Services</h3>
+        <ul class="footer-links">
+          {footerNav.services.map(service => (
+            <li><a href={service.url}>{service.name}</a></li>
+          ))}
+        </ul>
+      </div>
+      
+      <!-- Колонка 3: Районы -->
+      <div class="footer-col">
+        <h3 class="footer-heading">Areas We Serve</h3>
+        <ul class="footer-links">
+          {footerNav.areas.map(area => (
+            <li><a href={area.url}>{area.name}</a></li>
+          ))}
+        </ul>
+      </div>
+      
+      <!-- Колонка 4: Контакты и часы -->
+      <div class="footer-col">
+        <h3 class="footer-heading">Contact & Hours</h3>
+        <ul class="footer-contact">
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            </svg>
+            <a href={`tel:${contactInfo.phoneFormatted}`}>{contactInfo.phone}</a>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            </svg>
+            <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a>
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <circle cx="12" cy="9" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            </svg>
+            <a href={contactInfo.addressLink} target="_blank" rel="noopener noreferrer">{contactInfo.address}</a>
+          </li>
+        </ul>
+        
+        <div class="footer-hours">
+          {hours.map(slot => (
+            <div class="hour-row">
+              <span>{slot.day}</span>
+              <span>{slot.hours}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+    
+    <!-- Нижняя часть с копирайтом -->
+    <div class="footer-bottom">
+      <div class="copyright">
+        © {currentYear} NY Nails. All rights reserved.
+      </div>
+      <div class="footer-legal">
+        {footerNav.legal.map((link, index) => (
+          <span key={link.url}>
+            <a href={link.url}>{link.name}</a>
+            {index < footerNav.legal.length - 1 && <span class="separator">|</span>}
+          </span>
+        ))}
+      </div>
+      <div class="back-to-top">
+        <button id="backToTop" class="back-to-top-btn" aria-label="Back to top">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M12 5v14M5 12l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Schema.org разметка для LocalBusiness -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BeautySalon",
+  "name": "NY Nails",
+  "image": "https://nynails.com/images/logo.webp",
+  "url": "https://nynails.com",
+  "telephone": contactInfo.phoneFormatted,
+  "email": contactInfo.email,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "123 Fifth Avenue",
+    "addressLocality": "New York",
+    "addressRegion": "NY",
+    "postalCode": "10001",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.7137,
+    "longitude": -74.0037
+  },
+  "openingHours": ["Mo-Fr 09:00-21:00", "Sa 10:00-20:00", "Su 10:00-18:00"],
+  "priceRange": "$$",
+  "sameAs": socialLinks.map(s => s.url),
+  "areaServed": [
+    "Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island"
+  ]
+})} />
+
+<style>
+  .footer {
+    position: relative;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 60px 0 30px;
+    overflow: hidden;
+  }
+  
+  /* Декоративные геометрические фигуры */
+  .footer-shape {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.1;
+  }
+  
+  .shape-1 {
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, #FF0000, transparent);
+    border-radius: 50%;
+    animation: float 20s ease-in-out infinite;
+  }
+  
+  .shape-2 {
+    bottom: -80px;
+    left: -80px;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, #FF0000, transparent);
+    border-radius: 50%;
+    animation: float 15s ease-in-out infinite reverse;
+  }
+  
+  .shape-3 {
+    top: 40%;
+    left: 20%;
+    width: 150px;
+    height: 150px;
+    background: #FF0000;
+    clip-path: polygon(25% 0%, 75% 0%, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0% 75%, 0% 25%);
+    animation: rotate 30s linear infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(20px, -20px) rotate(10deg); }
+  }
+  
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  .footer-container {
+    max-width: 1520px;
+    margin: 0 auto;
+    padding: 0 26px;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 40px;
+    margin-bottom: 50px;
+  }
+  
+  /* Логотип */
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+
+.footer-logo-link {
+  display: inline-block;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.footer-logo-link:hover {
+  transform: scale(1.02);
+}
+
+.footer-logo-img {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+  .logo-icon {
+    font-size: 32px;
+  }
+  
+  .logo-text {
+    font-family: 'Sonsie One', cursive;
+    font-size: 28px;
+    color: white;
+  }
+  
+  .logo-accent {
+    color: #FF0000;
+  }
+  
+  .brand-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  /* Социальные сети */
+  .social-links {
+    display: flex;
+    gap: 16px;
+  }
+  
+  .social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    color: white;
+  }
+  
+  .social-link:hover {
+    background: var(--social-color);
+    transform: translateY(-5px);
+  }
+  
+  /* Заголовки колонок */
+  .footer-heading {
+    font-family: 'Sonsie One', cursive;
+    font-size: 18px;
+    color: white;
+    margin: 0 0 20px 0;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .footer-heading::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: #FF0000;
+    border-radius: 2px;
+  }
+  
+  /* Ссылки */
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-links li {
+    margin-bottom: 12px;
+  }
+  
+  .footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .footer-links a:hover {
+    color: #FF0000;
+    transform: translateX(5px);
+  }
+  
+  /* Контакты */
+  .footer-contact {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px 0;
+  }
+  
+  .footer-contact li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+  }
+  
+  .footer-contact svg {
+    flex-shrink: 0;
+    color: #FF0000;
+  }
+  
+  .footer-contact a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-contact a:hover {
+    color: #FF0000;
+  }
+  
+  /* Часы работы */
+  .footer-hours {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .hour-row {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    margin-bottom: 10px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .hour-row span:first-child {
+    font-weight: 600;
+  }
+  
+  /* Нижняя часть */
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+  }
+  
+  .copyright {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .footer-legal {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  
+  .footer-legal a {
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-legal a:hover {
+    color: #FF0000;
+  }
+  
+  .separator {
+    color: rgba(255, 255, 255, 0.3);
+    margin: 0 8px;
+  }
+  
+  .back-to-top-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 0, 0, 0.2);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.3s ease;
+  }
+  
+  .back-to-top-btn:hover {
+    background: #FF0000;
+    transform: translateY(-5px);
+  }
+  
+  /* ========== МЕДИА-ЗАПРОСЫ ========== */
+  
+  @media (max-width: 1200px) {
+    .footer-grid {
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 30px;
+    }
+    
+    .footer-col:last-child {
+      grid-column: span 3;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .footer {
+      padding: 40px 0 20px;
+    }
+    
+    .footer-container {
+      padding: 0 20px;
+    }
+    
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    
+    .footer-col:last-child {
+      grid-column: auto;
+    }
+    
+    .footer-bottom {
+      flex-direction: column;
+      text-align: center;
+      gap: 16px;
+    }
+    
+    .footer-legal {
+      justify-content: center;
+    }
+    
+    .logo-text {
+      font-size: 24px;
+    }
+    
+    .footer-heading {
+      font-size: 18px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .footer-legal {
+      gap: 8px;
+    }
+    
+    .separator {
+      margin: 0 4px;
+    }
+    
+    .hour-row {
+      font-size: 12px;
+    }
+  }
+</style>
+
+<script>
+  // Кнопка "Back to Top"
+  const backToTopBtn = document.getElementById('backToTop');
+  
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+</script>

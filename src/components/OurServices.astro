@@ -1,0 +1,627 @@
+---
+// Данные об услугах маникюра
+const services = [
+  {
+    name: 'CLASSIC MANICURE',
+    slug: 'classic-manicure',
+    description: "Essential nail care with shaping, cuticle treatment, and polish application. Perfect for everyday elegance.",
+    price: 'from $35',
+    duration: '45 min',
+    locations: ['Manhattan', 'Brooklyn', 'Queens'],
+    image: '/images/classicmanicure.png',
+  },
+  {
+    name: 'GEL POLISH',
+    slug: 'gel-polish',
+    description: "Long-lasting gel manicure that stays perfect for 2-3 weeks. High-shine finish, chip-resistant.",
+    price: 'from $50',
+    duration: '60 min',
+    locations: ['Manhattan', 'Brooklyn', 'Queens', 'Bronx'],
+    image: '/images/gelpolish.png',
+  },
+  {
+    name: 'NAIL EXTENSIONS',
+    slug: 'nail-extensions',
+    description: "Custom acrylic or gel extensions. Length, shape, and design tailored to your preference.",
+    price: 'from $75',
+    duration: '90-120 min',
+    locations: ['Manhattan', 'Brooklyn', 'Queens'],
+    image: '/images/nailextensions.png',
+  },
+  {
+    name: 'NAIL ART DESIGN',
+    slug: 'nail-art',
+    description: "Custom hand-painted designs, 3D elements, French manicure, ombre, and seasonal patterns.",
+    price: 'from $45',
+    duration: '60-90 min',
+    locations: ['Manhattan', 'Brooklyn', 'Queens', 'Bronx', 'Staten Island'],
+    image: '/images/nailartdesign.png',
+  },
+  {
+    name: 'PEDICURE',
+    slug: 'pedicure',
+    description: "Complete foot care with exfoliation, massage, and perfect polish. Relaxing and rejuvenating.",
+    price: 'from $55',
+    duration: '60 min',
+    locations: ['Manhattan', 'Brooklyn', 'Queens'],
+    image: '/images/pedicure.png',
+  },
+  {
+    name: 'NAIL REPAIR',
+    slug: 'nail-repair',
+    description: "Professional repair for broken, cracked, or damaged nails. Restore strength and appearance.",
+    price: 'from $15',
+    duration: '20-30 min',
+    locations: ['All 5 boroughs'],
+    image: '/images/nailrepair.png',
+  },
+  {
+    name: 'DIP POWDER',
+    slug: 'dip-powder',
+    description: "Stronger alternative to gel polish. No UV light needed, lasts up to 4 weeks.",
+    price: 'from $55',
+    duration: '60-75 min',
+    locations: ['Manhattan', 'Brooklyn', 'Queens'],
+    image: '/images/dippowder.png',
+  },
+  {
+    name: 'PARAFFIN TREATMENT',
+    slug: 'paraffin',
+    description: "Luxurious hot wax treatment for deep moisturizing. Leaves hands and feet incredibly soft.",
+    price: 'from $25',
+    duration: '20 min',
+    locations: ['Manhattan', 'Brooklyn'],
+    image: '/images/paraffinreatment.png',
+  },
+  {
+    name: 'NAIL REMOVAL',
+    slug: 'nail-removal',
+    description: "Safe and gentle removal of gel, acrylic, or dip powder without damaging natural nails.",
+    price: 'from $20',
+    duration: '30 min',
+    locations: ['All 5 boroughs'],
+    image: '/images/nailremoval.png',
+  }
+];
+---
+
+<section class="services-section">
+  <div class="services-container">
+    <!-- Заголовок секции -->
+    <div class="services-header">
+      <h2 class="services-title">
+        <span class="title-small">OUR PREMIUM</span>
+        <span class="title-large">NAIL SERVICES<span class="dot">.</span></span>
+      </h2>
+      <p class="services-subtitle">
+        Professional nail care and design services across New York.<br>
+        From classic manicure to custom nail art — your perfect look awaits.
+      </p>
+    </div>
+    
+    <!-- Сетка услуг -->
+    <div class="services-grid" id="servicesGrid">
+      {services.map((service, index) => (
+        <div 
+          class="service-card" 
+          data-index={index}
+          style={`--card-index: ${index}`}
+        >
+          <a href={`/services/${service.slug}`} class="service-link">
+            <div class="service-image-wrapper">
+              <img 
+                src={service.image} 
+                alt={`${service.name} service in NYC`}
+                class="service-image"
+                loading="lazy"
+              />
+            </div>
+            
+            <div class="service-content">
+              <h3 class="service-name">{service.name}</h3>
+              <p class="service-description">{service.description}</p>
+              
+              <div class="service-details">
+                <span class="service-price">{service.price}</span>
+                <span class="service-duration">⏱ {service.duration}</span>
+              </div>
+              
+              <div class="service-locations">
+                {service.locations.map(location => (
+                  <span class="location-tag">{location}</span>
+                ))}
+              </div>
+              
+              <div class="service-footer">
+                <span class="service-cta">Book now →</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      ))}
+    </div>
+    
+    <!-- Кнопка Load More -->
+    <div class="load-more-container" id="loadMoreContainer">
+      <button id="loadMoreBtn" class="load-more-btn">
+        <span>Load More</span>
+        <i class="fas fa-arrow-down"></i>
+      </button>
+    </div>
+    
+    <!-- Ссылка на все услуги -->
+    <div class="services-footer">
+      <a href="/services" class="view-all-link">
+        View all nail services
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-section {
+    position: relative;
+    width: 100%;
+    padding: 120px 0;
+    background: #ffffff;
+    overflow: hidden;
+  }
+  
+  /* Декоративные элементы как в Contact секции */
+  .services-section::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 0, 0, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  
+  .services-section::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -5%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255, 0, 0, 0.03) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  
+  .services-container {
+    max-width: 1520px;
+    margin: 0 auto;
+    padding: 0 26px;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .services-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+  
+  .services-title {
+    margin: 0 0 20px 0;
+    font-family: 'Caveat Brush', cursive;
+  }
+  
+  .services-title .title-small {
+    display: block;
+    font-size: 24px;
+    letter-spacing: 6px;
+    color: #FF0000;
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+  
+  .services-title .title-large {
+    display: block;
+    font-size: 80px;
+    color: #1E1E1E;
+    line-height: 1;
+  }
+  
+  .services-title .dot {
+    color: #FF0000;
+  }
+  
+  .services-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* Сетка - 3 колонки для 9 услуг */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+  
+  /* Карточка услуги */
+  .service-card {
+    position: relative;
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    opacity: 0;
+    animation: fadeInUp 0.5s ease forwards;
+    animation-delay: calc(var(--card-index) * 0.05s);
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.1);
+  }
+  
+  .service-link {
+    text-decoration: none;
+    display: block;
+  }
+  
+  .service-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    background: #f5f5f5;
+  }
+  
+  .service-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  
+  .service-card:hover .service-image {
+    transform: scale(1.08);
+  }
+  
+  .service-icon {
+    position: absolute;
+    bottom: -20px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    background: #FF0000;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2);
+  }
+  
+  .service-icon i {
+    font-size: 28px;
+    color: white;
+  }
+  
+  .service-content {
+    padding: 24px;
+  }
+  
+  .service-name {
+    font-family: 'Sonsie One', cursive;
+    font-size: 20px;
+    color: #1E1E1E;
+    margin: 0 0 12px 0;
+    letter-spacing: 1px;
+  }
+  
+  .service-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #6b6b6b;
+    margin: 0 0 16px 0;
+  }
+  
+  .service-details {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .service-price {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #FF0000;
+  }
+  
+  .service-duration {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #8b8b8b;
+  }
+  
+  .service-locations {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .location-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    padding: 4px 10px;
+    background: #f5f5f5;
+    color: #1E1E1E;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+    transition: all 0.2s ease;
+  }
+  
+  .service-card:hover .location-tag {
+    background: #FF0000;
+    color: white;
+  }
+  
+  .service-footer {
+    border-top: 1px solid #e0e0e0;
+    padding-top: 16px;
+  }
+  
+  .service-cta {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #FF0000;
+    transition: opacity 0.2s;
+  }
+  
+  .service-card:hover .service-cta {
+    opacity: 0.7;
+  }
+  
+  /* Load More кнопка */
+  .load-more-container {
+    text-align: center;
+    margin: 20px 0 40px;
+  }
+  
+  .load-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 32px;
+    background: white;
+    border: 2px solid #FF0000;
+    border-radius: 100px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #FF0000;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .load-more-btn:hover {
+    background: #FF0000;
+    color: white;
+    gap: 16px;
+    transform: translateY(-2px);
+  }
+  
+  /* Скрытые карточки */
+  .service-card.hidden {
+    display: none;
+  }
+  
+  .services-footer {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .view-all-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1E1E1E;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-bottom: 2px solid #FF0000;
+    transition: all 0.3s ease;
+  }
+  
+  .view-all-link:hover {
+    gap: 16px;
+    color: #FF0000;
+  }
+  
+  /* ========== МЕДИА-ЗАПРОСЫ ========== */
+  
+  @media (max-width: 1400px) {
+    .services-section {
+      padding: 100px 0;
+    }
+    
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    
+    .services-title .title-large {
+      font-size: 64px;
+    }
+  }
+  
+  @media (max-width: 1024px) {
+    .services-section {
+      padding: 80px 0;
+    }
+    
+    .services-title .title-large {
+      font-size: 56px;
+    }
+    
+    .service-name {
+      font-size: 18px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .services-section {
+      padding: 60px 0;
+    }
+    
+    .services-container {
+      padding: 0 20px;
+    }
+    
+    .services-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    
+    .services-title .title-small {
+      font-size: 18px;
+      letter-spacing: 4px;
+    }
+    
+    .services-title .title-large {
+      font-size: 48px;
+    }
+    
+    .services-subtitle {
+      font-size: 16px;
+      padding: 0 16px;
+      color: #666;
+    }
+    
+    .service-image-wrapper {
+      height: 200px;
+    }
+    
+    .service-icon {
+      width: 48px;
+      height: 48px;
+    }
+    
+    .service-icon i {
+      font-size: 24px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .services-section {
+      padding: 40px 0;
+    }
+    
+    .services-title .title-large {
+      font-size: 36px;
+    }
+    
+    .services-header {
+      margin-bottom: 40px;
+    }
+    
+    .service-content {
+      padding: 18px;
+    }
+    
+    .service-name {
+      font-size: 18px;
+    }
+    
+    .service-price {
+      font-size: 16px;
+    }
+  }
+</style>
+
+<script>
+  // Load More функционал
+  document.addEventListener('DOMContentLoaded', function() {
+    const serviceCards = document.querySelectorAll('.service-card');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    const loadMoreContainer = document.getElementById('loadMoreContainer');
+    
+    let visibleCount = 4; // Начальное количество видимых карточек (при 1400px+)
+    let currentVisible = 4;
+    
+    // Определяем количество видимых карточек в зависимости от ширины экрана
+    function getInitialVisibleCount() {
+      if (window.innerWidth <= 1400) {
+        return 4; // На планшетах и маленьких экранах показываем 4
+      } else {
+        return 6; // На больших экранах показываем 6 (2 ряда по 3)
+      }
+    }
+    
+    // Обновляем видимые карточки
+    function updateVisibleCards() {
+      const initialCount = getInitialVisibleCount();
+      
+      serviceCards.forEach((card, index) => {
+        if (index < currentVisible) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+      
+      // Показываем/скрываем кнопку Load More
+      if (loadMoreContainer) {
+        if (currentVisible >= serviceCards.length) {
+          loadMoreContainer.style.display = 'none';
+        } else {
+          loadMoreContainer.style.display = 'block';
+        }
+      }
+    }
+    
+    // Инициализация
+    currentVisible = getInitialVisibleCount();
+    updateVisibleCards();
+    
+    // Обработчик кнопки Load More
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener('click', function() {
+        currentVisible += 2; // Показываем еще 2 карточки
+        updateVisibleCards();
+      });
+    }
+    
+    // Обновляем при изменении размера окна
+    window.addEventListener('resize', function() {
+      const newInitialCount = getInitialVisibleCount();
+      if (currentVisible < newInitialCount) {
+        currentVisible = newInitialCount;
+      }
+      updateVisibleCards();
+    });
+  });
+</script>

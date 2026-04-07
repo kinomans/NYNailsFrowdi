@@ -1,0 +1,609 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "Nail Services NYC | Manicure, Gel Polish, Nail Art & More | NY Nails";
+const pageDescription = "Explore our full range of professional nail services in NYC. From classic manicure to gel polish, nail art, extensions, and pedicure. Book your appointment today!";
+
+// Все услуги
+const services = [
+  {
+    id: 1,
+    name: "Gel Polish",
+    slug: "gel-polish",
+    description: "Long-lasting gel manicure that stays flawless for 2-3 weeks. High-shine finish with zero drying time.",
+    price: "$50",
+    duration: "60 min",
+    image: "/images/gelpolish.png",
+    icon: "fa-droplet",
+    popular: true,
+    featured: true,
+    tags: ["Long-lasting", "Chip-resistant", "High-shine"]
+  },
+  {
+    id: 2,
+    name: "Classic Manicure",
+    slug: "classic-manicure",
+    description: "Timeless nail care with expert shaping, cuticle care, and hand massage. Perfect for everyday elegance.",
+    price: "$35",
+    duration: "45 min",
+    image: "/images/classicmanicure.png",
+    icon: "fa-hand-peace",
+    popular: true,
+    featured: true,
+    tags: ["Essential", "Relaxing", "Professional"]
+  },
+  {
+    id: 3,
+    name: "Nail Art Design",
+    slug: "nail-art",
+    description: "Custom hand-painted designs, 3D elements, and unique artwork. Express your personal style.",
+    price: "$45+",
+    duration: "60-90 min",
+    image: "/images/nailartdesign.png",
+    icon: "fa-palette",
+    popular: true,
+    featured: true,
+    tags: ["Custom", "Creative", "Unique"]
+  },
+  {
+    id: 4,
+    name: "Nail Extensions",
+    slug: "nail-extensions",
+    description: "Custom acrylic or gel extensions for length and strength. Any shape you desire.",
+    price: "$75",
+    duration: "90-120 min",
+    image: "/images/nailextensions.png",
+    icon: "fa-ruler",
+    popular: false,
+    featured: true,
+    tags: ["Length", "Strength", "Custom shape"]
+  },
+  {
+    id: 5,
+    name: "Pedicure",
+    slug: "pedicure",
+    description: "Complete foot care with exfoliation, massage, and perfect polish. Ultimate relaxation.",
+    price: "$55",
+    duration: "60 min",
+    image: "/images/pedicure.png",
+    icon: "fa-shoe-prints",
+    popular: true,
+    featured: false,
+    tags: ["Foot care", "Massage", "Relaxing"]
+  },
+  {
+    id: 6,
+    name: "Dip Powder",
+    slug: "dip-powder",
+    description: "Stronger alternative to gel polish. Lasts up to 4 weeks. No UV light needed.",
+    price: "$55",
+    duration: "60-75 min",
+    image: "/images/dippowder.png",
+    icon: "fa-cube",
+    popular: false,
+    featured: false,
+    tags: ["Durable", "Long-lasting", "No UV"]
+  }
+];
+
+const benefits = [
+  { icon: "fa-star", title: "Premium Brands", text: "OPI, CND Shellac, Gelish" },
+  { icon: "fa-shield-heart", title: "Sterile Environment", text: "Medical-grade sterilization" },
+  { icon: "fa-clock", title: "Flexible Hours", text: "Open 7 days a week" },
+  { icon: "fa-location-dot", title: "5 Locations", text: "Across all NYC boroughs" }
+];
+---
+
+<BaseLayout title={pageTitle} description={pageDescription} pageType="services">
+    <!-- Hero секция -->
+    <section class="services-hero">
+      <div class="hero-content">
+        <div class="hero-badge">💅 PREMIUM NAIL CARE</div>
+        <h1 class="hero-title">OUR<span class="highlight"> SERVICES</span></h1>
+        <p class="hero-subtitle">Professional nail services tailored to your style —<br>available across all New York boroughs</p>
+      </div>
+    </section>
+
+    <!-- Преимущества -->
+    <section class="services-benefits">
+      <div class="benefits-container">
+        {benefits.map(benefit => (
+          <div class="benefit-card">
+            <i class={`fas ${benefit.icon}`}></i>
+            <h3>{benefit.title}</h3>
+            <p>{benefit.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Все услуги - креативная сетка -->
+    <section class="all-services">
+      <div class="services-header">
+        <span class="section-badge">WHAT WE OFFER</span>
+        <h2>Explore Our<span class="highlight"> Nail Services</span></h2>
+        <p>From everyday elegance to statement art — find your perfect service</p>
+      </div>
+      
+      <div class="services-grid">
+        {services.map((service, index) => (
+          <div class="service-card" style={`--card-index: ${index}`}>
+            {service.popular && <span class="popular-badge">🔥 Most Popular</span>}
+            <div class="service-image">
+              <img src={service.image} alt={service.name} loading="lazy" />
+              <div class="service-icon">
+                <i class={`fas ${service.icon}`}></i>
+              </div>
+            </div>
+            <div class="service-content">
+              <h3 class="service-name">{service.name}</h3>
+              <p class="service-description">{service.description}</p>
+              <div class="service-tags">
+                {service.tags.map(tag => (
+                  <span class="service-tag">{tag}</span>
+                ))}
+              </div>
+              <div class="service-footer">
+                <div class="service-price">
+                  <span class="price">{service.price}</span>
+                  <span class="duration">⏱ {service.duration}</span>
+                </div>
+                <a href={`/services/${service.slug}`} class="service-link">
+                  Learn More <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA секция -->
+    <section class="services-cta">
+      <div class="cta-content">
+        <div class="cta-icon">💅</div>
+        <h2>Ready for Your Perfect Nails?</h2>
+        <p>Book your appointment online or walk in today — your transformation awaits!</p>
+        <div class="cta-buttons">
+          <a href="/booking" class="btn-primary">Book Now →</a>
+          <a href="/portfolio" class="btn-secondary">View Portfolio</a>
+        </div>
+      </div>
+    </section>
+</BaseLayout>
+
+<style>
+  /* Hero секция */
+  .services-hero {
+    position: relative;
+    padding: 100px 0 80px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  .services-hero::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255,0,0,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .hero-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 100px;
+    font-size: 14px;
+    color: #FF0000;
+    margin-bottom: 20px;
+  }
+  
+  .hero-title {
+    font-family: 'Caveat Brush', cursive;
+    font-size: 80px;
+    color: white;
+    margin-bottom: 20px;
+  }
+  
+  .hero-title .highlight {
+    color: #FF0000;
+  }
+  
+  .hero-subtitle {
+    font-size: 18px;
+    color: rgba(255,255,255,0.8);
+  }
+  
+  /* Преимущества */
+  .services-benefits {
+    padding: 60px 0;
+    background: white;
+  }
+  
+  .benefits-container {
+    max-width: 1520px;
+    margin: 0 auto;
+    padding: 0 26px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
+  
+  .benefit-card {
+    text-align: center;
+    padding: 32px 20px;
+    background: #f8f8f8;
+    border-radius: 24px;
+    transition: all 0.3s ease;
+  }
+  
+  .benefit-card:hover {
+    transform: translateY(-5px);
+    background: #FF0000;
+    color: white;
+  }
+  
+  .benefit-card i {
+    font-size: 40px;
+    color: #FF0000;
+    margin-bottom: 16px;
+    transition: color 0.3s ease;
+  }
+  
+  .benefit-card:hover i {
+    color: white;
+  }
+  
+  .benefit-card h3 {
+    font-family: 'Sonsie One', cursive;
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  
+  .benefit-card p {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .benefit-card:hover p {
+    color: rgba(255,255,255,0.9);
+  }
+  
+  /* Все услуги */
+  .all-services {
+    padding: 80px 0;
+    background: #f8f8f8;
+  }
+  
+  .services-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  
+  .section-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(255,0,0,0.1);
+    border-radius: 100px;
+    font-size: 12px;
+    color: #FF0000;
+    margin-bottom: 16px;
+  }
+  
+  .services-header h2 {
+    font-family: 'Caveat Brush', cursive;
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+  
+  .services-header .highlight {
+    color: #FF0000;
+  }
+  
+  .services-header p {
+    font-size: 16px;
+    color: #666;
+  }
+  
+  /* Креативная сетка услуг */
+  .services-grid {
+    max-width: 1520px;
+    margin: 0 auto;
+    padding: 0 26px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  
+  .service-card {
+    background: white;
+    border-radius: 28px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    animation: fadeInUp 0.5s ease forwards;
+    animation-delay: calc(var(--card-index) * 0.05s);
+    opacity: 0;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  }
+  
+  .popular-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 10;
+    background: #FFD700;
+    color: #1E1E1E;
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  
+  .service-image {
+    position: relative;
+    height: 240px;
+    overflow: hidden;
+  }
+  
+  .service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .service-card:hover .service-image img {
+    transform: scale(1.05);
+  }
+  
+  .service-icon {
+    position: absolute;
+    bottom: -20px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    background: #FF0000;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 20px rgba(255,0,0,0.2);
+  }
+  
+  .service-icon i {
+    font-size: 28px;
+    color: white;
+  }
+  
+  .service-content {
+    padding: 28px;
+  }
+  
+  .service-name {
+    font-family: 'Sonsie One', cursive;
+    font-size: 22px;
+    color: #1E1E1E;
+    margin-bottom: 12px;
+  }
+  
+  .service-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #666;
+    margin-bottom: 16px;
+  }
+  
+  .service-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .service-tag {
+    font-size: 10px;
+    padding: 4px 12px;
+    background: #f0f0f0;
+    border-radius: 20px;
+    color: #555;
+  }
+  
+  .service-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid #e0e0e0;
+  }
+  
+  .service-price {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .price {
+    font-family: 'Sonsie One', cursive;
+    font-size: 24px;
+    color: #FF0000;
+  }
+  
+  .duration {
+    font-size: 11px;
+    color: #888;
+  }
+  
+  .service-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #FF0000;
+    text-decoration: none;
+    transition: gap 0.3s ease;
+  }
+  
+  .service-link:hover {
+    gap: 12px;
+  }
+  
+  /* CTA */
+  .services-cta {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #FF0000 0%, #cc0000 100%);
+    color: white;
+    text-align: center;
+  }
+  
+  .cta-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+  }
+  
+  .services-cta h2 {
+    font-family: 'Caveat Brush', cursive;
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+  
+  .services-cta p {
+    font-size: 18px;
+    margin-bottom: 32px;
+    opacity: 0.9;
+  }
+  
+  .cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .services-cta .btn-primary {
+    background: white;
+    color: #FF0000;
+    padding: 14px 32px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .services-cta .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+  
+  .services-cta .btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+    padding: 14px 32px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .services-cta .btn-secondary:hover {
+    background: white;
+    color: #FF0000;
+    transform: translateY(-3px);
+  }
+  
+  /* ========== АДАПТИВНОСТЬ ========== */
+  
+  @media (max-width: 1024px) {
+    .hero-title {
+      font-size: 60px;
+    }
+    
+    .benefits-container {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 48px;
+    }
+    
+    .hero-subtitle {
+      font-size: 16px;
+    }
+    
+    .benefits-container {
+      grid-template-columns: 1fr;
+    }
+    
+    .services-header h2 {
+      font-size: 36px;
+    }
+    
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .services-cta h2 {
+      font-size: 32px;
+    }
+    
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: 36px;
+    }
+    
+    .services-header h2 {
+      font-size: 28px;
+    }
+    
+    .service-name {
+      font-size: 20px;
+    }
+    
+    .price {
+      font-size: 20px;
+    }
+  }
+</style>

@@ -1,0 +1,415 @@
+---
+const navItems = [
+  { name: 'HOME', path: '/' },
+  { name: 'SERVICES', path: '/services' },
+  { name: 'PORTFOLIO', path: '/portfolio' },
+  { name: 'AREAS', path: '/areas' },
+  { name: 'BLOG', path: '/blog' }
+];
+---
+
+<header class="site-header">
+  <div class="header-wrapper">
+    <div class="header-container">
+      <!-- ЛЕВО: Логотип -->
+      <div class="logo">
+      <a href="/">
+        <img src="/images/logo.svg" alt="Salon Logo" class="logo-img">
+        </a>
+      </div>
+      
+      <!-- БУРГЕР-КНОПКА (только на мобильных) -->
+      <button class="burger-menu" aria-label="Menu" aria-expanded="false">
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+      </button>
+      
+      <!-- ЦЕНТР: Навигационное меню (десктоп) -->
+      <nav class="main-nav desktop-nav">
+        <ul class="nav-menu">
+          {navItems.map((item) => (
+            <li class="nav-item">
+              <a href={item.path} class="nav-link">{item.name}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      
+      <!-- ПРАВО: Иконка WhatsApp -->
+      <div class="whatsapp-icon" id="whatsappIcon">
+        <a href="https://wa.me/12125551234" target="_blank" rel="noopener noreferrer" class="wa-link">
+          <img src="/images/whatsapp.svg" alt="WhatsApp" class="wa-img">
+        </a>
+      </div>
+    </div>
+    
+    <!-- МОБИЛЬНОЕ МЕНЮ (выезжающее) -->
+    <nav class="mobile-nav" id="mobileNav">
+      <ul class="mobile-nav-menu">
+        {navItems.map((item) => (
+          <li class="mobile-nav-item">
+            <a href={item.path} class="mobile-nav-link">{item.name}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  /* Фон и центрирование */
+  .site-header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: transparent;
+  }
+  .site-header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: fixed; /* Меняем с sticky на fixed */
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background: transparent;
+}
+  /* Обертка с фоном 1520px */
+  .header-wrapper {
+    max-width: 1520px;
+    width: 100%;
+    margin: 0 16px;
+    background: #1E1E1E;
+    border-radius: 0 0 16px 16px;
+    position: relative;
+  }
+  
+  .header-container {
+    width: 100%;
+    height: 60px;
+    padding: 0 26px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  /* Логотип */
+  .logo {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    line-height: 0;
+  }
+  
+  .logo-img {
+    height: 40px;
+    width: auto;
+    display: block;
+  }
+  
+  /* Десктоп навигация */
+  .desktop-nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .nav-menu {
+    display: flex;
+    gap: 26px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-link {
+    font-family: 'Sonsie One', cursive;
+    font-size: 20px;
+    font-weight: normal;
+    color: white;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+  }
+  
+  .nav-link:hover {
+    opacity: 0.7;
+  }
+  
+  /* Бургер-меню (скрыто на десктопе) */
+  .burger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1002;
+    position: relative;
+  }
+  
+  .burger-line {
+    width: 100%;
+    height: 3px;
+    background: white;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+  
+  /* Анимация бургера при открытии */
+  .burger-menu.active .burger-line:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+  
+  .burger-menu.active .burger-line:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .burger-menu.active .burger-line:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+  
+  /* Мобильная навигация (выезжающая) */
+  .mobile-nav {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100vh;
+    background: #1E1E1E;
+    z-index: 1001;
+    transition: left 0.4s ease;
+    overflow-y: auto;
+    padding-top: 80px;
+  }
+  
+  .mobile-nav.open {
+    left: 0;
+  }
+  
+  .mobile-nav-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .mobile-nav-item {
+    text-align: center;
+  }
+  
+  .mobile-nav-link {
+    font-family: 'Sonsie One', cursive;
+    font-size: 28px;
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    display: inline-block;
+    padding: 8px 16px;
+  }
+  
+  .mobile-nav-link:hover {
+    opacity: 0.7;
+  }
+  
+  /* Иконка WhatsApp */
+  .whatsapp-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    z-index: 1002;
+    position: relative;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  /* Скрываем WhatsApp когда меню открыто */
+  .whatsapp-icon.hide-wa {
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  .wa-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  
+  .wa-img {
+    width: 28px;
+    height: 28px;
+    display: block;
+  }
+  
+  .wa-link:hover {
+    opacity: 0.8;
+  }
+  
+  /* Затемнение фона при открытом меню */
+  .menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* ========== АДАПТИВ ========== */
+  
+  /* Планшеты (до 1024px) */
+  @media (max-width: 1024px) {
+    .header-wrapper {
+      max-width: calc(100% - 32px);
+      margin: 0 16px;
+    }
+    
+    .header-container {
+      padding: 0 20px;
+    }
+    
+    .desktop-nav {
+      display: none;
+    }
+    
+    .burger-menu {
+      display: flex;
+    }
+    
+    .nav-menu {
+      gap: 16px;
+    }
+  }
+  
+  /* Мобильные (до 768px) */
+  @media (max-width: 768px) {
+    .header-wrapper {
+      max-width: 100%;
+      border-radius: 0 0 16px 16px;
+    }
+    
+    .header-container {
+      padding: 0 20px;
+    }
+    
+    .logo-img {
+      height: 32px;
+    }
+    
+    .wa-img {
+      width: 24px;
+      height: 24px;
+    }
+    
+    .mobile-nav-link {
+      font-size: 24px;
+    }
+  }
+  
+  /* Маленькие телефоны (до 480px) */
+  @media (max-width: 480px) {
+    .header-container {
+      padding: 0 16px;
+    }
+    
+    .logo-img {
+      height: 28px;
+    }
+    
+    .mobile-nav-link {
+      font-size: 20px;
+    }
+    
+    .mobile-nav-menu {
+      gap: 24px;
+    }
+  }
+</style>
+
+<script>
+  // Бургер-меню функционал
+  const burger = document.querySelector('.burger-menu');
+  const mobileNav = document.querySelector('.mobile-nav');
+  const whatsappIcon = document.getElementById('whatsappIcon');
+  
+  if (burger && mobileNav) {
+    // Создаем оверлей
+    const overlay = document.createElement('div');
+    overlay.className = 'menu-overlay';
+    document.body.appendChild(overlay);
+    
+    function openMenu() {
+      mobileNav.classList.add('open');
+      burger.classList.add('active');
+      burger.setAttribute('aria-expanded', 'true');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      
+      // Скрываем иконку WhatsApp
+      if (whatsappIcon) {
+        whatsappIcon.classList.add('hide-wa');
+      }
+    }
+    
+    function closeMenu() {
+      mobileNav.classList.remove('open');
+      burger.classList.remove('active');
+      burger.setAttribute('aria-expanded', 'false');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+      
+      // Показываем иконку WhatsApp обратно
+      if (whatsappIcon) {
+        whatsappIcon.classList.remove('hide-wa');
+      }
+    }
+    
+    // Открытие/закрытие по клику на бургер
+    burger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (mobileNav.classList.contains('open')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+    
+    // Закрытие при клике на оверлей
+    overlay.addEventListener('click', closeMenu);
+    
+    // Закрытие при клике на ссылку в меню
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+    
+    // Закрытие при нажатии Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
+        closeMenu();
+      }
+    });
+  }
+</script>

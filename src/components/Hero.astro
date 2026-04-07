@@ -1,0 +1,415 @@
+---
+// Пути к 9 фотографиям с текстом для SEO
+const galleryImages = [
+  { 
+    src: '/images/heroImage1.png', 
+    alt: 'Salon styling service in NYC', 
+    top: '12%', 
+    left: '9%', 
+    width: '211px', 
+    rotate: '-14deg', 
+    zIndex: 1,
+    hoverText: 'Expert hair styling services in New York. Professional stylists create your perfect look for any occasion.'
+  },
+  { 
+    src: '/images/heroImage2.png', 
+    alt: 'Professional hair coloring NY', 
+    top: '8%', 
+    right: '62%', 
+    width: '200px', 
+    rotate: '1deg', 
+    zIndex: 2,
+    hoverText: 'Transform your hair with our premium coloring techniques. Balayage, highlights, and full color services.'
+  },
+  { 
+    src: '/images/heroImage3.png', 
+    alt: 'Classic single-color coating service', 
+    top: '55%', 
+    left: '18%', 
+    width: '197px', 
+    rotate: '-10deg', 
+    zIndex: 3,
+    hoverText: 'Beautiful single-color coating for long-lasting shine and protection. Perfect for elegant everyday look.'
+  },
+  { 
+    src: '/images/heroImage4.png', 
+    alt: 'Skincare treatments Manhattan', 
+    top: 'auto', 
+    bottom: '1%', 
+    right: '56%', 
+    width: '190px', 
+    rotate: '-4deg', 
+    zIndex: 2,
+    hoverText: 'Rejuvenating skincare treatments. Facials, peels, and anti-aging therapies for radiant skin.'
+  },
+  { 
+    src: '/images/heroImage5.png', 
+    alt: 'Professional makeup artist NY', 
+    top: '12%', 
+    left: '50%', 
+    width: '197px', 
+    rotate: '1deg', 
+    zIndex: 1,
+    hoverText: 'Flawless makeup for weddings, events, and photoshoots. Natural or glam - your choice.'
+  },
+  { 
+    src: '/images/heroImage6.png', 
+    alt: 'Hair styling and blowout NYC', 
+    bottom: '4%', 
+    left: '50%', 
+    width: '197px', 
+    rotate: '5deg', 
+    zIndex: 3,
+    hoverText: 'Luxury blowouts and hair styling. Perfect for date nights, events, or everyday elegance.'
+  },
+  { 
+    src: '/images/heroImage7.png', 
+    alt: 'Beauty treatment salon Manhattan', 
+    top: '60%', 
+    right: '18%', 
+    width: '197px', 
+    rotate: '1deg', 
+    zIndex: 2,
+    hoverText: 'Full range of beauty treatments. From waxing to lash extensions - we have you covered.'
+  },
+  { 
+    src: '/images/heroImage8.png', 
+    alt: 'Doodle nails art design NY', 
+    bottom: '64%', 
+    right: '20%', 
+    width: '217px', 
+    rotate: '19deg', 
+    zIndex: 1,
+    hoverText: 'Creative doodle nail art. Unique designs that express your personality and style.'
+  },
+  { 
+    src: '/images/heroImage9.png', 
+    alt: 'Spa therapy and relaxation NYC', 
+    top: '32%', 
+    right: '8%', 
+    width: '178px', 
+    rotate: '-9deg', 
+    zIndex: 3,
+    hoverText: 'Relaxing spa therapies. Massages, body treatments, and holistic wellness experiences.'
+  }
+];
+
+// Функция для получения ширины в зависимости от брейкпоинта
+const getResponsiveWidth = (originalWidth, breakpoint) => {
+  if (breakpoint <= 320) return parseInt(originalWidth) * 0.35;
+  if (breakpoint <= 480) return parseInt(originalWidth) * 0.45;
+  if (breakpoint <= 768) return parseInt(originalWidth) * 0.55;
+  if (breakpoint <= 1024) return parseInt(originalWidth) * 0.7;
+  return parseInt(originalWidth);
+};
+---
+
+<section class="hero">
+  <div class="hero-gallery">
+    {galleryImages.map((img, index) => (
+      <div 
+        class="gallery-item"
+        style={{
+          position: 'absolute',
+          top: img.top !== undefined ? img.top : 'auto',
+          left: img.left !== undefined ? img.left : 'auto',
+          right: img.right !== undefined ? img.right : 'auto',
+          bottom: img.bottom !== undefined ? img.bottom : 'auto',
+          width: img.width,
+          rotate: img.rotate,
+          zIndex: img.zIndex
+        }}
+      >
+        <div class="gallery-card">
+          <img 
+            src={img.src} 
+            alt={img.alt}
+            loading="lazy"
+            class="gallery-img"
+          />
+          <div class="gallery-hover">
+            <p class="hover-text">{img.hoverText}</p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+  
+  <div class="hero-content">
+    <h1 class="hero-title">
+      <span class="line1">YOU WILL FULFILL</span><br>
+      <span class="dreams-wrapper">
+        YOUR DREAMS
+        <img src="/images/shapeHero.svg" alt="" class="shape-under-dreams">
+      </span>
+    </h1>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FF0000;
+  }
+  
+  .hero-gallery {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+  
+  .gallery-item {
+    position: absolute;
+    cursor: pointer;
+    /* Базовая ширина будет переопределена через медиа-запросы */
+  }
+  
+  .gallery-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease;
+  }
+  
+  .gallery-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+  }
+  
+  .gallery-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    padding: 12px;
+  }
+  
+  .hover-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #1E1E1E;
+    text-align: center;
+    margin: 0;
+    font-weight: 500;
+  }
+  
+  /* Hover для всех устройств (кроме 320px) */
+  @media (min-width: 321px) {
+    .gallery-card:hover,
+    .gallery-card:active {
+      transform: scale(1.02) rotate(0deg);
+    }
+    
+    .gallery-card:hover .gallery-img,
+    .gallery-card:active .gallery-img {
+      opacity: 0;
+    }
+    
+    .gallery-card:hover .gallery-hover,
+    .gallery-card:active .gallery-hover {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .gallery-item:hover,
+    .gallery-item:active {
+      z-index: 10 !important;
+    }
+  }
+  
+  @media (max-width: 320px) {
+    .gallery-hover {
+      display: none;
+    }
+    
+    .gallery-card:hover .gallery-img,
+    .gallery-card:active .gallery-img {
+      opacity: 1;
+    }
+  }
+  
+  /* ========== РЕАЛЬНОЕ ИЗМЕНЕНИЕ РАЗМЕРА ФОТОГРАФИЙ ========== */
+  
+  /* Планшеты и маленькие десктопы (1024px - 769px) - уменьшаем до 70% */
+  @media (max-width: 1024px) {
+    .gallery-item {
+      transform: scale(0.7);
+      transform-origin: center;
+    }
+    
+    .hover-text {
+      font-size: 11px;
+    }
+  }
+  
+  /* Мобильные устройства (768px - 481px) - уменьшаем до 55% */
+  @media (max-width: 768px) {
+    .gallery-item {
+      transform: scale(0.55);
+      transform-origin: center;
+    }
+    
+    .hover-text {
+      font-size: 10px;
+      padding: 8px;
+    }
+    
+    .gallery-hover {
+      padding: 8px;
+    }
+  }
+  
+  /* Маленькие мобильные (480px - 321px) - уменьшаем до 45% */
+  @media (max-width: 480px) {
+    .gallery-item {
+      transform: scale(0.45);
+      transform-origin: center;
+    }
+    
+    .hover-text {
+      font-size: 9px;
+      line-height: 1.3;
+    }
+  }
+  
+  /* Очень маленькие (320px и меньше) - уменьшаем до 35% */
+  @media (max-width: 320px) {
+    .gallery-item {
+      transform: scale(0.35);
+      transform-origin: center;
+    }
+  }
+  
+  /* Центральный контент */
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 634px;
+    width: 100%;
+    padding: 2rem;
+  }
+  
+  .hero-title {
+    font-family: 'Caveat Brush', cursive;
+    font-size: 96px;
+    line-height: 1.2;
+    font-weight: 400;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    letter-spacing: 2px;
+  }
+  
+  .line1 {
+    display: inline-block;
+    white-space: nowrap;
+  }
+  
+  .dreams-wrapper {
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+  }
+  
+  .shape-under-dreams {
+    position: absolute;
+    bottom: -30px;
+    left: 75%;
+    transform: translateX(-50%);
+    width: 70%;
+    min-width: 260px;
+    height: auto;
+    pointer-events: none;
+  }
+  
+  /* ========== АДАПТИВНОСТЬ ТЕКСТА ========== */
+  
+  @media (max-width: 1024px) {
+    .hero-title {
+      font-size: 72px;
+      line-height: 70px;
+    }
+    
+    .shape-under-dreams {
+      width: 60%;
+      min-width: 200px;
+      bottom: -30px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 48px;
+      line-height: 46px;
+    }
+    
+    .hero-content {
+      max-width: 90%;
+      padding: 1rem;
+    }
+    
+    .shape-under-dreams {
+      width: 50%;
+      min-width: 160px;
+      bottom: -20px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: 36px;
+      line-height: 34px;
+    }
+    
+    .shape-under-dreams {
+      width: 40%;
+      min-width: 130px;
+      bottom: -15px;
+      left: 70%;
+    }
+  }
+  
+  @media (max-width: 320px) {
+    .hero-title {
+      font-size: 28px;
+      line-height: 26px;
+    }
+    
+    .shape-under-dreams {
+      width: 35%;
+      min-width: 100px;
+      bottom: -10px;
+      left: 65%;
+    }
+    
+    .hero-content {
+      padding: 0.5rem;
+    }
+  }
+</style>
